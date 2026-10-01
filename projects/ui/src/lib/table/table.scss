@@ -1,6 +1,7 @@
 :host {
   --tp-table-row-height: 48px;
   --tp-table-header-height: 48px;
+  --tp-table-empty-row-height: 120px;
   display: block;
   color: var(--tp-color-text-primary);
   font-size: var(--tp-text-md);
@@ -9,13 +10,17 @@
 .tp-table__container {
   width: 100%;
   border: 1px solid var(--tp-color-border);
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
   overflow: hidden;
 }
 
 .tp-table__scroll-container {
   width: 100%;
   overflow: auto;
+}
+
+.tp-table__scroll-container--reserved-space {
+  min-height: calc(var(--tp-table-header-height) + var(--tp-table-empty-row-height));
 }
 
 .tp-table__table {
@@ -123,7 +128,7 @@ tbody tr:not(.tp-table__empty-row):hover {
 .tp-table__sort-button:focus-visible {
   outline: 2px solid var(--tp-color-focus);
   outline-offset: 2px;
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
 }
 .tp-table__sort-icon {
   width: 18px;
@@ -216,7 +221,7 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
 }
 
 .tp-table__empty-row td {
-  height: auto;
+  height: var(--tp-table-empty-row-height);
   padding: var(--tp-space-6) var(--tp-space-4);
   color: var(--tp-color-text-secondary);
   text-align: center;

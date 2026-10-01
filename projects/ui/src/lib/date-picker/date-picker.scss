@@ -105,7 +105,7 @@
 
 ::ng-deep .mat-datepicker-content:has(.tp-date-picker-calendar) {
   --mat-datepicker-calendar-container-background-color: var(--tp-color-white);
-  --mat-datepicker-calendar-container-shape: var(--tp-radius-xs);
+  --mat-datepicker-calendar-container-shape: var(--tp-radius-sm);
   background-color: var(--tp-color-white);
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
 }

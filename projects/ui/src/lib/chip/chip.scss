@@ -10,10 +10,10 @@
   --mat-chip-focus-state-layer-opacity: 0;
   --mat-chip-selected-hover-state-layer-opacity: 0;
   --mat-chip-selected-focus-state-layer-opacity: 0;
-  --mat-chip-container-shape-radius: var(--tp-radius-xs);
+  --mat-chip-container-shape-radius: var(--tp-radius-sm);
 
   border: none;
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
   cursor: default;
   user-select: none;
   box-shadow: none;

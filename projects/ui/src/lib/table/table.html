@@ -27,9 +27,9 @@
 
   <div
     class="tp-table__scroll-container"
+    [class.tp-table__scroll-container--reserved-space]="loading() || displayedRows().length === 0"
     cdkScrollable
     [style.max-height]="maxHeightCss()"
-    [style.height]="scrollHeightCss()"
   >
     <table
       class="tp-table__table"

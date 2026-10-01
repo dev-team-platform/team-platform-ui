@@ -17,8 +17,8 @@
     --tp-input-autocomplete-multiselect-focus-color
   );
   --mat-form-field-outlined-caret-color: var(--tp-input-autocomplete-multiselect-focus-color);
-  --mat-form-field-outlined-focus-outline-width: 3px;
-  --mat-form-field-outlined-container-shape: var(--tp-radius-xs);
+  --mat-form-field-outlined-focus-outline-width: 2px;
+  --mat-form-field-outlined-container-shape: var(--tp-radius-sm);
   --mat-form-field-outlined-outline-color: var(--tp-color-border-strong);
   --mat-form-field-outlined-input-text-color: var(--tp-color-text-primary);
   --mat-form-field-outlined-label-text-color: var(--tp-color-text-secondary);
@@ -269,21 +269,16 @@
 
 :host ::ng-deep .tp-input-autocomplete-multiselect--invalid {
   --mat-form-field-outlined-focus-outline-color: var(--tp-color-red-600);
-  --mat-form-field-outlined-focus-label-text-color: var(--tp-color-red-600);
   --mat-form-field-outlined-caret-color: var(--tp-color-red-600);
-  --mat-form-field-outlined-focus-outline-width: 2px;
+  --mat-form-field-outlined-focus-outline-width: 1px;
 
   .mat-mdc-notch-piece {
     border-color: var(--tp-color-red-600);
-    border-width: 2px;
+    border-width: 1px;
   }
 
   .mdc-notched-outline__notch {
     border-right-color: transparent;
     border-left-color: transparent;
-  }
-
-  .mat-mdc-floating-label {
-    color: var(--tp-color-red-600);
   }
 }

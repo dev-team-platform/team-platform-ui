@@ -309,10 +309,6 @@ export class TpTable<T extends object = Record<string, unknown>> {
   protected readonly maxHeightCss = computed(() =>
     this.toCssSize(this.config().maxHeight ?? 'none'),
   );
-  protected readonly scrollHeightCss = computed(() => {
-    const maxHeight = this.config().maxHeight;
-    return maxHeight === undefined || maxHeight === 'none' ? null : this.toCssSize(maxHeight);
-  });
   protected readonly actionMenuWidthCss = computed(() =>
     this.toCssSize(this.actionColumn().menuWidth ?? 'auto'),
   );

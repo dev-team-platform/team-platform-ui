@@ -40,19 +40,19 @@
 }
 
 .tp-text-button--shape-rect {
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
 }
 
-.tp-text-button--hover-shape-circle:hover {
+.tp-text-button--hover-shape-circle:not(:disabled):hover {
   border-radius: 50%;
 }
 
-.tp-text-button--hover-shape-elip:hover {
+.tp-text-button--hover-shape-elip:not(:disabled):hover {
   border-radius: var(--tp-radius-full);
 }
 
-.tp-text-button--hover-shape-rect:hover {
-  border-radius: var(--tp-radius-xs);
+.tp-text-button--hover-shape-rect:not(:disabled):hover {
+  border-radius: var(--tp-radius-sm);
 }
 
 .tp-text-button--shape-circle:active {
@@ -64,7 +64,7 @@
 }
 
 .tp-text-button--shape-rect:active {
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
 }
 
 .tp-text-button--underline:active .mdc-button__label {
