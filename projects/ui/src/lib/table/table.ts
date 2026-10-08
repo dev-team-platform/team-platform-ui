@@ -145,6 +145,16 @@ export interface TpTableFilterContentContext<T extends object> {
   key: string;
 }
 
+export interface TpTableCellContentContext<T extends object> {
+  /** The row whose cell is being rendered. */
+  $implicit: T;
+  row: T;
+  /** The column whose cell is being rendered. */
+  column: TpTableColumn<T>;
+  key: string;
+  value: TpTableCellValue;
+}
+
 export interface TpTableEmptyContentContext<T extends object> {
   /** The rows currently supplied to the table (usually an empty collection). */
   $implicit: readonly T[];
@@ -172,6 +182,18 @@ export class TpTableFilterContent<T extends object = Record<string, unknown>> {
   readonly key = input<string | null>(null, { alias: 'tpTableFilter' });
 
   constructor(readonly template: TemplateRef<TpTableFilterContentContext<T>>) {}
+}
+
+/**
+ * Marks a projected cell template. When `tpTableCell` has a value, the
+ * template is used for cells in the matching column key. A template without
+ * a value is used as the fallback for every cell.
+ */
+@Directive({ selector: 'ng-template[tpTableCell]' })
+export class TpTableCellContent<T extends object = Record<string, unknown>> {
+  readonly key = input<string | null>(null, { alias: 'tpTableCell' });
+
+  constructor(readonly template: TemplateRef<TpTableCellContentContext<T>>) {}
 }
 
 /** Marks a projected template used instead of the default empty message. */
@@ -249,6 +271,7 @@ export class TpTable<T extends object = Record<string, unknown>> {
   protected readonly actionContent = contentChild<TpTableActionContent<T>>(TpTableActionContent);
   protected readonly filterContents =
     contentChildren<TpTableFilterContent<T>>(TpTableFilterContent);
+  protected readonly cellContents = contentChildren<TpTableCellContent<T>>(TpTableCellContent);
   protected readonly emptyContent = contentChild<TpTableEmptyContent<T>>(TpTableEmptyContent);
   protected readonly columns = computed(() => this.config().columns);
   protected readonly rows = computed(() => this.data().rows);
@@ -461,6 +484,24 @@ export class TpTable<T extends object = Record<string, unknown>> {
       templates.find((template) => template.key() === column.key) ??
       templates.find((template) => !template.key())
     );
+  }
+
+  protected cellContentFor(column: TpTableColumn<T>): TpTableCellContent<T> | undefined {
+    const templates = this.cellContents();
+    return (
+      templates.find((template) => template.key() === column.key) ??
+      templates.find((template) => !template.key())
+    );
+  }
+
+  protected cellContext(row: T, column: TpTableColumn<T>): TpTableCellContentContext<T> {
+    return {
+      $implicit: row,
+      row,
+      column,
+      key: column.key,
+      value: this.cellValue(row, column),
+    };
   }
 
   protected emptyContentContext(): TpTableEmptyContentContext<T> {

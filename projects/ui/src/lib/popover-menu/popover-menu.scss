@@ -1,0 +1,22 @@
+:host {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: baseline;
+}
+
+.tp-popover-menu__panel {
+  box-sizing: border-box;
+  overflow: auto;
+  padding: var(--tp-space-4);
+  border: 1px solid var(--tp-color-border);
+  border-radius: var(--tp-radius-lg);
+  color: var(--tp-color-text-primary);
+  background: var(--tp-color-surface-elevated);
+  box-shadow: var(--tp-shadow-md);
+  overscroll-behavior: contain;
+
+  &:focus {
+    outline: none;
+  }
+}

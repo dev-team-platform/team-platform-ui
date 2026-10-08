@@ -4,13 +4,27 @@
     <code>&lt;tp-dialog&gt;</code>
   </div>
   <tp-button (click)="demoDialog.openDialog()">Open dialog</tp-button>
-  <tp-dialog #demoDialog title="Example dialog">
-    <p>
-      This dialog demonstrates projected content, actions, backdrop closing, and Escape closing.
-    </p>
-    <div dialog-actions>
-      <tp-text-button (click)="demoDialog.closeDialog()">Cancel</tp-text-button>
-      <tp-button (click)="demoDialog.closeDialog()">Confirm</tp-button>
+  <tp-dialog
+    #demoDialog
+    ariaLabel="Example dialog"
+    width="min(90vw, 600px)"
+    maxWidth="calc(100vw - 48px)"
+    height="auto"
+    maxHeight="calc(100vh - 48px)"
+  >
+    <div class="example-group">
+      <div class="component-section__heading">
+        <h2>Example dialog</h2>
+        <tp-text-button (onClick)="demoDialog.closeDialog()">Close</tp-text-button>
+      </div>
+      <p>
+        This dialog uses custom projected content. Its backdrop, centered position, and Escape
+        handling come from the dialog container.
+      </p>
+      <div class="example-row">
+        <tp-text-button (onClick)="demoDialog.closeDialog()">Cancel</tp-text-button>
+        <tp-button (onClick)="demoDialog.closeDialog()">Confirm</tp-button>
+      </div>
     </div>
   </tp-dialog>
 </section>

@@ -1,34 +1,21 @@
 import { NgStyle } from '@angular/common';
 import { CdkTrapFocus } from '@angular/cdk/a11y';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  model,
-  output,
-} from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 
 @Component({
   selector: 'tp-dialog',
-  imports: [CdkTrapFocus, MatButtonModule, MatDialogModule, NgStyle],
+  imports: [CdkTrapFocus, NgStyle],
   templateUrl: './dialog.html',
   styleUrl: './dialog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TpDialog {
   open = model(false);
-  title = input('Dialog');
-  ariaLabel = input<string | null>(null);
-  color = input('var(--tp-color-surface-elevated)');
-  textColor = input('var(--tp-color-text-primary)');
-  borderColor = input('var(--tp-color-border)');
+  ariaLabel = input('Dialog');
   width = input('min(90vw, 560px)');
-  maxWidth = input('560px');
+  maxWidth = input('calc(100vw - var(--tp-space-6) - var(--tp-space-6))');
   height = input('auto');
-  maxHeight = input('90vh');
+  maxHeight = input('calc(100vh - var(--tp-space-6) - var(--tp-space-6))');
   closeOnBackdrop = input(true);
   closeOnEscape = input(true);
 
@@ -38,9 +25,6 @@ export class TpDialog {
   protected readonly isOpen = this.open;
 
   protected readonly dialogStyle = computed(() => ({
-    '--tp-dialog-color': this.color(),
-    '--tp-dialog-text-color': this.textColor(),
-    '--tp-dialog-border-color': this.borderColor(),
     width: this.width(),
     maxWidth: this.maxWidth(),
     height: this.height(),

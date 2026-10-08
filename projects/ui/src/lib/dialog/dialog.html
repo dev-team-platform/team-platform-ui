@@ -9,30 +9,12 @@
       cdkTrapFocus
       [cdkTrapFocusAutoCapture]="true"
       role="dialog"
+      tabindex="-1"
       aria-modal="true"
-      [attr.aria-label]="ariaLabel() || title()"
+      [attr.aria-label]="ariaLabel()"
       [ngStyle]="dialogStyle()"
     >
-      <header class="tp-dialog__header">
-        <h2 mat-dialog-title class="tp-dialog__title">{{ title() }}</h2>
-        <button
-          mat-icon-button
-          type="button"
-          class="tp-dialog__close"
-          aria-label="Close dialog"
-          (click)="closeDialog()"
-        >
-          <span class="tp-icon material-symbols-outlined" aria-hidden="true">close</span>
-        </button>
-      </header>
-
-      <mat-dialog-content class="tp-dialog__content">
-        <ng-content></ng-content>
-      </mat-dialog-content>
-
-      <mat-dialog-actions class="tp-dialog__actions" align="end">
-        <ng-content select="[dialog-actions]"></ng-content>
-      </mat-dialog-actions>
+      <ng-content></ng-content>
     </section>
   </div>
 }

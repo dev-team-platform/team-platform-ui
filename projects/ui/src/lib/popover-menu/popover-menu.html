@@ -1,0 +1,22 @@
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="origin() ?? originElement"
+  [cdkConnectedOverlayOpen]="open()"
+  [cdkConnectedOverlayPositions]="positions()"
+  [cdkConnectedOverlayPush]="true"
+  [cdkConnectedOverlayHasBackdrop]="false"
+  (overlayOutsideClick)="closePopover(false)"
+  (overlayKeydown)="handlePopoverKeydown($event)"
+  (attach)="handlePopoverAttach()"
+>
+  <section
+    [id]="panelId"
+    class="tp-popover-menu__panel"
+    role="dialog"
+    tabindex="-1"
+    [attr.aria-label]="ariaLabel()"
+    [ngStyle]="panelStyle()"
+  >
+    <ng-content></ng-content>
+  </section>
+</ng-template>

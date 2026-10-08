@@ -15,6 +15,7 @@ import { TestInputDatePicker } from './test-input-date-picker/test-input-date-pi
 import { TestInputMultiselect } from './test-input-multiselect/test-input-multiselect';
 import { TestInputSingleselect } from './test-input-singleselect/test-input-singleselect';
 import { TestProgressBar } from './test-progress-bar/test-progress-bar';
+import { TestPopoverMenu } from './test-popover-menu/test-popover-menu';
 import { TestRadio } from './test-radio/test-radio';
 import { TestSearchBar } from './test-search-bar/test-search-bar';
 import { TestSkeleton } from './test-skeleton/test-skeleton';
@@ -43,6 +44,7 @@ import { TestTable } from './test-table/test-table';
     TestInputMultiselect,
     TestInputSingleselect,
     TestProgressBar,
+    TestPopoverMenu,
     TestRadio,
     TestSearchBar,
     TestSkeleton,
