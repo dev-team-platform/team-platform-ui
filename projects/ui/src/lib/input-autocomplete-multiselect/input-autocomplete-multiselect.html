@@ -25,7 +25,11 @@
     </mat-label>
   }
 
-  <div class="tp-input-autocomplete-multiselect__value" (click)="openOptions()">
+  <div
+    class="tp-input-autocomplete-multiselect__value"
+    [class.tp-input-autocomplete-multiselect__value--new-line]="typingMode() === 'new-line'"
+    (click)="openOptions()"
+  >
     @for (selectedValue of visibleSelectedValues(); track selectedValue) {
       <span
         class="tp-input-autocomplete-multiselect__chip"

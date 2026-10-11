@@ -7,8 +7,14 @@ import { MatDividerModule } from '@angular/material/divider';
   templateUrl: './divider.html',
   styleUrl: './divider.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.width]': 'width()',
+    '[style.max-width]': 'maxWidth()',
+  },
 })
 export class TpDivider {
   vertical = input(false, { transform: booleanAttribute });
   inset = input(false, { transform: booleanAttribute });
+  width = input('auto');
+  maxWidth = input('none');
 }

@@ -29,5 +29,19 @@
   <app-test-skeleton></app-test-skeleton>
   <app-test-dialog></app-test-dialog>
   <app-test-popover-menu></app-test-popover-menu>
+  <app-test-toast-notification
+    (toastRequested)="addToast($event)"
+    (pushModeChanged)="setToastPushMode($event)"
+    (positionChanged)="setToastPosition($event)"
+    (toastDisplayModeChanged)="setToastDisplayMode($event)"
+  ></app-test-toast-notification>
   <app-test-table></app-test-table>
 </main>
+
+<tp-toast-notification-container
+  [toastPosition]="toastPosition()"
+  [toastPushMode]="toastPushMode()"
+  [stackMaxLength]="5"
+  [toastDisplayMode]="toastDisplayMode()"
+  [(toasts)]="toastItems"
+></tp-toast-notification-container>

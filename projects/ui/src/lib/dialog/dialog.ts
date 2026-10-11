@@ -13,11 +13,10 @@ export class TpDialog {
   open = model(false);
   ariaLabel = input('Dialog');
   width = input('min(90vw, 560px)');
-  maxWidth = input('calc(100vw - var(--tp-space-6) - var(--tp-space-6))');
+  maxWidth = input('100vw');
   height = input('auto');
-  maxHeight = input('calc(100vh - var(--tp-space-6) - var(--tp-space-6))');
-  closeOnBackdrop = input(true);
-  closeOnEscape = input(true);
+  maxHeight = input('100vh');
+  padding = input('0');
 
   onOpen = output<void>();
   onClose = output<void>();
@@ -29,6 +28,7 @@ export class TpDialog {
     maxWidth: this.maxWidth(),
     height: this.height(),
     maxHeight: this.maxHeight(),
+    padding: this.padding(),
   }));
 
   openDialog(): void {
@@ -43,18 +43,5 @@ export class TpDialog {
 
     this.isOpen.set(false);
     this.onClose.emit();
-  }
-
-  protected handleBackdropClick(event: MouseEvent): void {
-    if (this.closeOnBackdrop() && event.target === event.currentTarget) {
-      this.closeDialog();
-    }
-  }
-
-  protected handleEscape(event: Event): void {
-    event.stopPropagation();
-    if (this.isOpen() && this.closeOnEscape()) {
-      this.closeDialog();
-    }
   }
 }

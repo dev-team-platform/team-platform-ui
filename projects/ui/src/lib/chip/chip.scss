@@ -14,46 +14,26 @@
 
   border: none;
   border-radius: var(--tp-radius-sm);
+  box-sizing: border-box;
+  min-height: 0;
   cursor: default;
   user-select: none;
   box-shadow: none;
+  font-size: 13px;
   transition:
     background-color var(--tp-transition-fast),
     border-color var(--tp-transition-fast),
     color var(--tp-transition-fast);
+
+  .mdc-evolution-chip__text-label {
+    font-size: inherit;
+  }
 }
 
 .tp-chip__content {
   display: inline-flex;
   align-items: center;
   gap: var(--tp-space-2);
-}
-
-.tp-chip--sm {
-  min-height: var(--tp-space-6);
-  font-size: 12px;
-
-  .mdc-evolution-chip__text-label {
-    font-size: 12px;
-  }
-}
-
-.tp-chip--md {
-  min-height: calc(var(--tp-space-6) + var(--tp-space-1));
-  font-size: 13px;
-
-  .mdc-evolution-chip__text-label {
-    font-size: 13px;
-  }
-}
-
-.tp-chip--lg {
-  min-height: var(--tp-control-height-sm);
-  font-size: 14px;
-
-  .mdc-evolution-chip__text-label {
-    font-size: 14px;
-  }
 }
 
 .tp-chip--filled {

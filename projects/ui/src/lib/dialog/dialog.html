@@ -1,9 +1,5 @@
 @if (isOpen()) {
-  <div
-    class="tp-dialog-backdrop"
-    (click)="handleBackdropClick($event)"
-    (keydown.escape)="handleEscape($event)"
-  >
+  <div class="tp-dialog-backdrop">
     <section
       class="tp-dialog"
       cdkTrapFocus

@@ -98,9 +98,9 @@ export class TpPopoverMenu {
   ariaLabel = input('Popover content');
   position = input<TpPopoverMenuPosition>('bottom-end');
   width = input('auto');
-  maxWidth = input('min(90vw, 400px)');
+  maxWidth = input('100vw');
   height = input('auto');
-  maxHeight = input('80vh');
+  maxHeight = input('100vh');
 
   onOpen = output<void>();
   onClose = output<void>();

@@ -103,9 +103,8 @@ export class TpInputAutocompleteSingleselect implements FormValueControl<TpSelec
   protected readonly showError = computed(
     () =>
       !!this.error() ||
-      this.invalid() ||
-      this.errors().length > 0 ||
-      (this.touched() && this.hasRequiredError()),
+      (this.touched() &&
+        (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
   );
 
   protected readonly displayedError = computed(

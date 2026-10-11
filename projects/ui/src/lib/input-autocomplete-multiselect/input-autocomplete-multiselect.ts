@@ -41,6 +41,7 @@ import { TpComponentColor } from '../utils/component-color';
 export type TpAutocompleteMultiselectOption = TpSelectOption;
 export type TpInputAutocompleteMultiselectContentSize = 'sm' | 'md' | 'lg';
 export type TpInputAutocompleteMultiselectColor = TpComponentColor;
+export type TpInputAutocompleteMultiselectTypingMode = 'inline' | 'new-line';
 
 const CONTENT_SIZE_MAP: Record<TpInputAutocompleteMultiselectContentSize, string> = {
   sm: 'var(--tp-text-sm)',
@@ -96,6 +97,7 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
   color = input<TpInputAutocompleteMultiselectColor>('blue');
   maxChipContentLength = input<number | undefined>(undefined);
   maxChips = input<number | undefined>(undefined);
+  typingMode = input<TpInputAutocompleteMultiselectTypingMode>('inline');
 
   protected readonly selectAllOptionValue = '__tp-input-autocomplete-multiselect-select-all__';
   private readonly destroyRef = inject(DestroyRef);
@@ -149,9 +151,8 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
   protected readonly showError = computed(
     () =>
       !!this.error() ||
-      this.invalid() ||
-      this.errors().length > 0 ||
-      (this.touched() && this.hasRequiredError()),
+      (this.touched() &&
+        (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
   );
   protected readonly displayedError = computed(
     () => this.error() ?? validationErrorMessage(this.errors(), this.requiredMessage()),

@@ -90,9 +90,8 @@ export class TpInputDatePicker implements FormValueControl<Date | null> {
   protected readonly showError = computed(
     () =>
       !!this.error() ||
-      this.invalid() ||
-      this.errors().length > 0 ||
-      (this.touched() && this.hasRequiredError()),
+      (this.touched() &&
+        (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
   );
   protected readonly displayedError = computed(
     () => this.error() ?? validationErrorMessage(this.errors(), this.requiredMessage()),
