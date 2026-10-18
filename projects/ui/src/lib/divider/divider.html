@@ -1,1 +1,10 @@
-<mat-divider class="tp-divider" [vertical]="vertical()" [inset]="inset()"> </mat-divider>
+<mat-divider
+  class="tp-divider"
+  [class.tp-divider--dot]="mode() === 'dot'"
+  [class.tp-divider--dot-line]="mode() === 'dot-line'"
+  [class.tp-divider--dash]="mode() === 'dash'"
+  [class.tp-divider--double-line]="mode() === 'double-line'"
+  [class.tp-divider--triple-line]="mode() === 'triple-line'"
+  [vertical]="vertical()"
+  [inset]="inset()"
+></mat-divider>

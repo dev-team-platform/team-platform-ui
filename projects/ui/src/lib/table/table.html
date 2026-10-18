@@ -1,4 +1,9 @@
-<mat-menu #actionMenu="matMenu" xPosition="before" yPosition="below" class="tp-table__action-menu">
+<mat-menu
+  #actionMenu="matMenu"
+  xPosition="after"
+  yPosition="below"
+  class="tp-table__action-menu"
+>
   <div
     class="tp-table__action-menu-content"
     [style.width]="actionMenuWidthCss()"
@@ -20,8 +25,8 @@
     <tp-progress-bar
       class="tp-table__loading-progress"
       mode="indeterminate"
-      [color]="loadingColor()"
       ariaLabel="Loading table"
+      [color]="loadingColor()"
     ></tp-progress-bar>
   }
 
@@ -37,15 +42,18 @@
       [style.width]="tableWidthCss()"
     >
       <colgroup>
-        @for (column of columns(); track column.key) {
-          <col [style.width]="columnWidth(column)" />
-        }
         @if (actionsEnabled()) {
           <col style="width: 72px" />
+        }
+        @for (column of columns(); track column.key) {
+          <col [style.width]="columnWidth(column)" />
         }
       </colgroup>
       <thead>
         <tr>
+          @if (actionsEnabled()) {
+            <th class="tp-table__action-header" scope="col">{{ actionTitle() }}</th>
+          }
           @for (column of columns(); track column.key) {
             <th
               scope="col"
@@ -73,14 +81,14 @@
               }
             </th>
           }
-          @if (actionsEnabled()) {
-            <th class="tp-table__action-header" scope="col">{{ actionTitle() }}</th>
-          }
         </tr>
       </thead>
       <tbody>
         @if (filterEnabled()) {
           <tr class="tp-table__filter-row">
+            @if (actionsEnabled()) {
+              <td class="tp-table__action-cell tp-table__filter-action-cell"></td>
+            }
             @for (column of columns(); track column.key) {
               <td [style.width]="column.width || null" [style.min-width]="column.minWidth || null">
                 @if (filterContentFor(column); as filterContent) {
@@ -97,9 +105,6 @@
                 }
               </td>
             }
-            @if (actionsEnabled()) {
-              <td class="tp-table__action-cell tp-table__filter-action-cell"></td>
-            }
           </tr>
         }
 
@@ -110,6 +115,22 @@
             (click)="activateRow(row)"
             (keydown)="activateRowFromKeyboard(row, $event)"
           >
+            @if (actionsEnabled()) {
+              <td class="tp-table__action-cell">
+                <button
+                  mat-icon-button
+                  type="button"
+                  class="tp-table__action-trigger"
+                  [matMenuTriggerFor]="actionMenu"
+                  [attr.aria-label]="actionTitle() + ' for this row'"
+                  (click)="openActions(row, $event)"
+                >
+                  <span class="tp-icon material-symbols-outlined" aria-hidden="true">
+                    more_vert
+                  </span>
+                </button>
+              </td>
+            }
             @for (column of columns(); track column.key) {
               <td [style.width]="column.width || null" [style.min-width]="column.minWidth || null">
                 @if (cellContentFor(column); as cellContent) {
@@ -127,22 +148,6 @@
                     >{{ cell.displayText }}</span
                   >
                 }
-              </td>
-            }
-            @if (actionsEnabled()) {
-              <td class="tp-table__action-cell">
-                <button
-                  mat-icon-button
-                  type="button"
-                  class="tp-table__action-trigger"
-                  [matMenuTriggerFor]="actionMenu"
-                  [attr.aria-label]="actionTitle() + ' for this row'"
-                  (click)="openActions(row, $event)"
-                >
-                  <span class="tp-icon material-symbols-outlined" aria-hidden="true">
-                    more_vert
-                  </span>
-                </button>
               </td>
             }
           </tr>

@@ -94,6 +94,12 @@ export class TpInputAutocompleteSingleselect implements FormValueControl<TpSelec
 
   protected readonly contentFontSize = computed(() => CONTENT_SIZE_MAP[this.contentSize()]);
   protected readonly focusColor = computed(() => `var(--tp-color-${this.color()}-600)`);
+  protected readonly selectedOptionBackgroundColor = computed(
+    () => `var(--tp-color-${this.color()}-100)`,
+  );
+  protected readonly selectedOptionTextColor = computed(
+    () => `var(--tp-color-${this.color()}-900)`,
+  );
 
   protected readonly isEmpty = computed(() => this.optionText(this.value()).trim() === '');
 
@@ -103,8 +109,7 @@ export class TpInputAutocompleteSingleselect implements FormValueControl<TpSelec
   protected readonly showError = computed(
     () =>
       !!this.error() ||
-      (this.touched() &&
-        (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
+      (this.touched() && (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
   );
 
   protected readonly displayedError = computed(

@@ -5,15 +5,27 @@
   </div>
   <div class="input-grid">
     <tp-input-autocomplete-multiselect
-      title="Projects"
+      title="Projects, inline typing"
       placeholder="Search projects"
       [options]="projectOptions()"
       [displayWith]="displayProject"
       [(value)]="selectedProjects"
       (onSearch)="searchProjects($event)"
+      typingMode="inline"
+      [maxChipContentLength]="14"
+      [maxChips]="1"
+      hint="Search is handled by the parent/API"
+    ></tp-input-autocomplete-multiselect>
+    <tp-input-autocomplete-multiselect
+      title="Projects, typing on a new line"
+      placeholder="Search projects"
+      [options]="projectOptions()"
+      [displayWith]="displayProject"
+      [(value)]="selectedProjects"
+      (onSearch)="searchProjects($event)"
+      typingMode="newline"
       [maxChipContentLength]="14"
       [maxChips]="2"
-      hint="Search is handled by the parent/API"
     ></tp-input-autocomplete-multiselect>
     <tp-input-autocomplete-multiselect
       title="Loading projects"

@@ -8,7 +8,6 @@ export * from './lib/button/button';
 export * from './lib/card/card';
 export * from './lib/checkbox/checkbox';
 export * from './lib/chip/chip';
-export * from './lib/date-picker/date-picker';
 export * from './lib/dialog/dialog';
 export * from './lib/divider/divider';
 export * from './lib/input-autocomplete-multiselect/input-autocomplete-multiselect';
@@ -21,6 +20,7 @@ export * from './lib/popover-menu/popover-menu';
 export * from './lib/progress-bar/progress-bar';
 export * from './lib/radio/radio';
 export * from './lib/search-bar/search-bar';
+export * from './lib/select-chip/select-chip';
 export * from './lib/skeleton/skeleton';
 export * from './lib/slide-toggle/slide-toggle';
 export * from './lib/spinner/spinner';
@@ -30,7 +30,7 @@ export * from './lib/text-button/text-button';
 export type {
   TpToastNotificationDisplayMode as TpToastNotificationMode,
   TpToastNotificationPosition,
-  TpToastNotificationType
+  TpToastNotificationType,
 } from './lib/toast-notification/toast-notification';
 export { TpToastNotificationContainer } from './lib/toast-notification/toast-notification-container';
 export type { TpToastNotificationItem } from './lib/toast-notification/toast-notification-item';

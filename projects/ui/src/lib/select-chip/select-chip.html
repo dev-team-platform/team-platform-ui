@@ -1,0 +1,17 @@
+<span
+  class="tp-select-chip__content"
+  [matTooltip]="tooltipTitle() || ''"
+  [matTooltipDisabled]="!tooltipTitle()"
+>
+  <span class="tp-select-chip__label">{{ label() }}</span>
+  @if (removable()) {
+    <button
+      type="button"
+      class="tp-select-chip__remove"
+      [attr.aria-label]="removeLabel() || 'Remove ' + label()"
+      (click)="removeChip($event)"
+    >
+      <span class="tp-icon material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  }
+</span>

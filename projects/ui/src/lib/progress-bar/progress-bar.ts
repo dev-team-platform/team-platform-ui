@@ -1,7 +1,7 @@
 import { NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import type { ProgressBarMode } from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import type { TpComponentColor } from '../utils/component-color';
 import { finiteNumberAttribute } from '../utils/number-input';
 

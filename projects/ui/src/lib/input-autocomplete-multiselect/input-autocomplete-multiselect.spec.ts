@@ -36,14 +36,15 @@ describe('TpInputAutocompleteMultiselect', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
+    const chip = fixture.nativeElement.querySelector('tp-select-chip') as HTMLElement;
     const formField = fixture.nativeElement.querySelector('mat-form-field') as HTMLElement;
 
-    expect(
-      formField.style.getPropertyValue('--tp-input-autocomplete-multiselect-chip-text-color'),
-    ).toBe('var(--tp-color-red-900)');
-    expect(
-      formField.style.getPropertyValue('--tp-input-autocomplete-multiselect-chip-background-color'),
-    ).toBe('var(--tp-color-red-100)');
+    expect(chip.style.getPropertyValue('--tp-select-chip-text-color')).toBe(
+      'var(--tp-color-red-900)',
+    );
+    expect(chip.style.getPropertyValue('--tp-select-chip-background-color')).toBe(
+      'var(--tp-color-red-100)',
+    );
     expect(
       formField.style.getPropertyValue('--tp-input-autocomplete-multiselect-focus-color'),
     ).toBe('var(--tp-color-red-600)');
@@ -170,7 +171,7 @@ describe('TpInputAutocompleteMultiselect', () => {
 
     const title = fixture.nativeElement.querySelector('.mat-mdc-floating-label') as HTMLElement;
     const chips = fixture.nativeElement.querySelectorAll(
-      '.tp-input-autocomplete-multiselect__chip-label',
+      '.tp-select-chip__label',
     ) as NodeListOf<HTMLElement>;
 
     expect(title.classList).toContain('mdc-floating-label--float-above');

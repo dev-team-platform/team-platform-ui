@@ -36,12 +36,13 @@ describe('InputMultiselect', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
+    const chip = fixture.nativeElement.querySelector('tp-select-chip') as HTMLElement;
     const formField = fixture.nativeElement.querySelector('mat-form-field') as HTMLElement;
 
-    expect(formField.style.getPropertyValue('--tp-input-multiselect-chip-text-color')).toBe(
+    expect(chip.style.getPropertyValue('--tp-select-chip-text-color')).toBe(
       'var(--tp-color-red-900)',
     );
-    expect(formField.style.getPropertyValue('--tp-input-multiselect-chip-background-color')).toBe(
+    expect(chip.style.getPropertyValue('--tp-select-chip-background-color')).toBe(
       'var(--tp-color-red-100)',
     );
     expect(formField.style.getPropertyValue('--tp-input-multiselect-focus-color')).toBe(
@@ -165,9 +166,7 @@ describe('InputMultiselect', () => {
       .optionText;
     expect(optionText.call(component, options[0])).toBe('Platform API');
 
-    const chip = fixture.nativeElement.querySelector(
-      '.tp-input-multiselect__chip-label',
-    ) as HTMLElement;
+    const chip = fixture.nativeElement.querySelector('.tp-select-chip__label') as HTMLElement;
     expect(chip.textContent?.trim()).toBe('Platform API');
     expect(component.value()).toEqual([options[0]]);
   });

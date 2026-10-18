@@ -23,6 +23,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TpCheckbox } from '../checkbox/checkbox';
+import { TpSelectChip } from '../select-chip/select-chip';
 import { TpSpinner } from '../spinner/spinner';
 import { truncateText } from '../utils/text-wrapping';
 import {
@@ -56,6 +57,7 @@ const CONTENT_SIZE_MAP: Record<TpInputMultiselectContentSize, string> = {
     MatFormFieldModule,
     MatInputModule,
     TpCheckbox,
+    TpSelectChip,
     TpSpinner,
   ],
   templateUrl: './input-multiselect.html',
@@ -142,11 +144,6 @@ export class TpInputMultiselect implements FormValueControl<TpSelectOption[]> {
 
   protected readonly contentFontSize = computed(() => CONTENT_SIZE_MAP[this.contentSize()]);
   protected readonly focusColor = computed(() => `var(--tp-color-${this.color()}-600)`);
-  protected readonly selectedChipTextColor = computed(() => `var(--tp-color-${this.color()}-900)`);
-  protected readonly selectedChipBackgroundColor = computed(
-    () => `var(--tp-color-${this.color()}-100)`,
-  );
-
   protected readonly floatLabel = computed<'always' | 'auto'>(() =>
     this.title() || this.selectedValues().length ? 'always' : 'auto',
   );
@@ -159,8 +156,7 @@ export class TpInputMultiselect implements FormValueControl<TpSelectOption[]> {
   protected readonly showError = computed(
     () =>
       !!this.error() ||
-      (this.touched() &&
-        (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
+      (this.touched() && (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
   );
 
   protected readonly displayedError = computed(
@@ -203,8 +199,7 @@ export class TpInputMultiselect implements FormValueControl<TpSelectOption[]> {
     this.updatePanelPosition();
   }
 
-  protected removeOption(option: TpMultiselectOption, event: MouseEvent): void {
-    event.stopPropagation();
+  protected removeOption(option: TpMultiselectOption): void {
     this.value.update((values) => values.filter((value) => value !== option));
     this.touched.set(true);
     this.updatePanelPosition();
@@ -255,6 +250,10 @@ export class TpInputMultiselect implements FormValueControl<TpSelectOption[]> {
 
   protected chipText(value: TpSelectOption): string {
     return truncateText(this.optionText(value), this.maxChipContentLength());
+  }
+
+  protected remainingChipLabel(): string {
+    return `+ ${this.hiddenSelectedCount()} others`;
   }
 
   private toggleOption(option: TpMultiselectOption): void {

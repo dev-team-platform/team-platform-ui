@@ -1,3 +1,4 @@
+import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -11,9 +12,8 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { ScrollDispatcher } from '@angular/cdk/scrolling';
-import { FormValueControl } from '@angular/forms/signals';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormValueControl } from '@angular/forms/signals';
 import {
   MatAutocompleteModule,
   MatAutocompleteSelectedEvent,
@@ -24,24 +24,25 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TpCheckbox } from '../checkbox/checkbox';
+import { TpSelectChip } from '../select-chip/select-chip';
 import { TpSpinner } from '../spinner/spinner';
-import { truncateText } from '../utils/text-wrapping';
-import {
-  getSelectOptionText,
-  TpSelectOption,
-  TpSelectOptionDisplayFn,
-} from '../utils/select-option';
+import { TpComponentColor } from '../utils/component-color';
 import {
   createValidationErrorId,
   TpValidationErrors,
   validationErrorMessage,
 } from '../utils/form-validation';
-import { TpComponentColor } from '../utils/component-color';
+import {
+  getSelectOptionText,
+  TpSelectOption,
+  TpSelectOptionDisplayFn,
+} from '../utils/select-option';
+import { truncateText } from '../utils/text-wrapping';
 
 export type TpAutocompleteMultiselectOption = TpSelectOption;
 export type TpInputAutocompleteMultiselectContentSize = 'sm' | 'md' | 'lg';
 export type TpInputAutocompleteMultiselectColor = TpComponentColor;
-export type TpInputAutocompleteMultiselectTypingMode = 'inline' | 'new-line';
+export type TpInputAutocompleteMultiselectTypingMode = 'inline' | 'newline';
 
 const CONTENT_SIZE_MAP: Record<TpInputAutocompleteMultiselectContentSize, string> = {
   sm: 'var(--tp-text-sm)',
@@ -58,6 +59,7 @@ const CONTENT_SIZE_MAP: Record<TpInputAutocompleteMultiselectContentSize, string
     MatFormFieldModule,
     MatInputModule,
     TpCheckbox,
+    TpSelectChip,
     TpSpinner,
   ],
   templateUrl: './input-autocomplete-multiselect.html',
@@ -138,10 +140,6 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
   );
   protected readonly contentFontSize = computed(() => CONTENT_SIZE_MAP[this.contentSize()]);
   protected readonly focusColor = computed(() => `var(--tp-color-${this.color()}-600)`);
-  protected readonly selectedChipTextColor = computed(() => `var(--tp-color-${this.color()}-900)`);
-  protected readonly selectedChipBackgroundColor = computed(
-    () => `var(--tp-color-${this.color()}-100)`,
-  );
   protected readonly floatLabel = computed<'always' | 'auto'>(() =>
     this.title() || this.selectedValues().length ? 'always' : 'auto',
   );
@@ -151,8 +149,7 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
   protected readonly showError = computed(
     () =>
       !!this.error() ||
-      (this.touched() &&
-        (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
+      (this.touched() && (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
   );
   protected readonly displayedError = computed(
     () => this.error() ?? validationErrorMessage(this.errors(), this.requiredMessage()),
@@ -194,8 +191,7 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
     this.updatePanelPosition();
   }
 
-  protected removeOption(option: TpAutocompleteMultiselectOption, event: MouseEvent): void {
-    event.stopPropagation();
+  protected removeOption(option: TpAutocompleteMultiselectOption): void {
     this.value.update((values) => values.filter((value) => value !== option));
     this.touched.set(true);
     this.updatePanelPosition();
@@ -243,6 +239,10 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
 
   protected chipText(value: TpSelectOption): string {
     return truncateText(this.optionText(value), this.maxChipContentLength());
+  }
+
+  protected remainingChipLabel(): string {
+    return `+${this.hiddenSelectedCount()} others`;
   }
 
   private toggleOption(option: TpAutocompleteMultiselectOption): void {

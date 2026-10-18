@@ -11,7 +11,6 @@ import { TestButton } from './test-button/test-button';
 import { TestCard } from './test-card/test-card';
 import { TestCheckbox } from './test-checkbox/test-checkbox';
 import { TestChip } from './test-chip/test-chip';
-import { TestDatePicker } from './test-date-picker/test-date-picker';
 import { TestDialog } from './test-dialog/test-dialog';
 import { TestDivider } from './test-divider/test-divider';
 import { TestInputAutocompleteMultiselect } from './test-input-autocomplete-multiselect/test-input-autocomplete-multiselect';
@@ -41,7 +40,6 @@ import { TestToastNotification } from './test-toast-notification/test-toast-noti
     TestCard,
     TestCheckbox,
     TestChip,
-    TestDatePicker,
     TestDialog,
     TestDivider,
     TestInput,

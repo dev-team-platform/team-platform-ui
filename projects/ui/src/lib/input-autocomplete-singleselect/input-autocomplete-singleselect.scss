@@ -115,6 +115,16 @@
 }
 
 ::ng-deep .tp-input-autocomplete-singleselect__panel {
+  overscroll-behavior-y: contain;
+
+  .mat-mdc-option.tp-input-autocomplete-singleselect__option--selected {
+    background-color: var(--mat-option-selected-state-layer-color) !important;
+
+    .mdc-list-item__primary-text {
+      color: var(--mat-option-selected-state-label-text-color) !important;
+    }
+  }
+
   .tp-input-autocomplete-singleselect__feedback-content {
     display: inline-flex;
     align-items: center;

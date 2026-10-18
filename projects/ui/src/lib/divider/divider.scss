@@ -4,6 +4,132 @@
 
 .tp-divider {
   --mat-divider-color: var(--tp-color-border);
+  --tp-divider-color: var(--tp-color-border);
+}
+
+.tp-divider--dot,
+.tp-divider--dot-line,
+.tp-divider--dash,
+.tp-divider--triple-line {
+  --mat-divider-color: transparent;
+  position: relative;
+}
+
+.tp-divider--dot::after,
+.tp-divider--dot-line::after,
+.tp-divider--dash::after,
+.tp-divider--triple-line::after {
+  position: absolute;
+  content: '';
+  pointer-events: none;
+}
+
+.tp-divider--dot:not(.mat-divider-vertical)::after,
+.tp-divider--dot-line:not(.mat-divider-vertical)::after,
+.tp-divider--dash:not(.mat-divider-vertical)::after,
+.tp-divider--triple-line:not(.mat-divider-vertical)::after {
+  top: -2px;
+  left: 0;
+  width: 100%;
+}
+
+.tp-divider--dot.mat-divider-vertical::after,
+.tp-divider--dot-line.mat-divider-vertical::after,
+.tp-divider--dash.mat-divider-vertical::after,
+.tp-divider--triple-line.mat-divider-vertical::after {
+  top: 0;
+  right: -2px;
+  height: 100%;
+}
+
+.tp-divider--dot:not(.mat-divider-vertical)::after {
+  height: 5px;
+  background: radial-gradient(circle, var(--tp-divider-color) 1px, transparent 1.2px) center / 6px 4px
+    repeat-x;
+}
+
+.tp-divider--dot.mat-divider-vertical::after {
+  width: 5px;
+  background: radial-gradient(circle, var(--tp-divider-color) 1px, transparent 1.2px) center / 4px 6px
+    repeat-y;
+}
+
+.tp-divider--dot-line:not(.mat-divider-vertical)::after {
+  top: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--tp-divider-color) 0 1px,
+    transparent 1px 4px,
+    var(--tp-divider-color) 4px 14px,
+    transparent 14px 18px
+  );
+}
+
+.tp-divider--dot-line.mat-divider-vertical::after {
+  right: 0;
+  width: 1px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--tp-divider-color) 0 1px,
+    transparent 1px 4px,
+    var(--tp-divider-color) 4px 14px,
+    transparent 14px 18px
+  );
+}
+
+.tp-divider--dash:not(.mat-divider-vertical)::after {
+  top: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--tp-divider-color) 0 6px,
+    transparent 6px 10px
+  );
+}
+
+.tp-divider--dash.mat-divider-vertical::after {
+  right: 0;
+  width: 1px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--tp-divider-color) 0 6px,
+    transparent 6px 10px
+  );
+}
+
+.tp-divider--triple-line:not(.mat-divider-vertical)::after {
+  height: 5px;
+  background: linear-gradient(
+    to bottom,
+    var(--tp-divider-color) 0 1px,
+    transparent 1px 2px,
+    var(--tp-divider-color) 2px 3px,
+    transparent 3px 4px,
+    var(--tp-divider-color) 4px 5px
+  );
+}
+
+.tp-divider--triple-line.mat-divider-vertical::after {
+  width: 5px;
+  background: linear-gradient(
+    to right,
+    var(--tp-divider-color) 0 1px,
+    transparent 1px 2px,
+    var(--tp-divider-color) 2px 3px,
+    transparent 3px 4px,
+    var(--tp-divider-color) 4px 5px
+  );
+}
+
+.tp-divider--double-line:not(.mat-divider-vertical) {
+  --mat-divider-width: 3px;
+  border-top-style: double;
+}
+
+.tp-divider--double-line.mat-divider-vertical {
+  --mat-divider-width: 3px;
+  border-right-style: double;
 }
 
 .tp-divider.mat-divider-vertical {

@@ -17,8 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { TpProgressBar } from '../progress-bar/progress-bar';
-import type { TpProgressBarColor } from '../progress-bar/progress-bar';
+import { TpProgressBar, type TpProgressBarColor } from '../progress-bar/progress-bar';
 import { truncateText } from '../utils/text-wrapping';
 
 export type TpTableCellValue = string | number | boolean | Date | null | undefined;
@@ -320,8 +319,8 @@ export class TpTable<T extends object = Record<string, unknown>> {
   }
 
   protected readonly tableWidthCss = computed(() => {
-    const widths = this.columns().map((column) => this.columnWidth(column));
-    if (this.actionsEnabled()) widths.push('72px');
+    const widths = this.actionsEnabled() ? ['72px'] : [];
+    widths.push(...this.columns().map((column) => this.columnWidth(column)));
     return widths.length ? `max(100%, calc(${widths.join(' + ')}))` : '100%';
   });
   protected readonly actionsEnabled = computed(() => this.actionColumn().enabled ?? false);
