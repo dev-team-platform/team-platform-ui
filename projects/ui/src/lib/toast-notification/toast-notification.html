@@ -1,0 +1,47 @@
+@if (isVisible()) {
+  <div
+    class="tp-toast"
+    [ngClass]="classes()"
+    [attr.role]="type() === 'error' ? 'alert' : 'status'"
+    [attr.aria-live]="type() === 'error' ? 'assertive' : 'polite'"
+    aria-atomic="true"
+  >
+    <div class="tp-toast__content">
+      <span class="tp-icon material-symbols-outlined tp-toast__type-icon" aria-hidden="true">
+        {{ iconName() }}
+      </span>
+
+      <div class="tp-toast__message">
+        @if (contentTemplate(); as template) {
+          <ng-container
+            [ngTemplateOutlet]="template"
+            [ngTemplateOutletContext]="contentContext()"
+          ></ng-container>
+        } @else {
+          {{ contentText() }}
+        }
+      </div>
+
+      <button
+        mat-icon-button
+        type="button"
+        class="tp-toast__close"
+        aria-label="Dismiss notification"
+        (click)="dismiss()"
+      >
+        <span class="tp-icon material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
+    </div>
+
+    @if (duration() > 0) {
+      <tp-progress-bar
+        class="tp-toast__progress"
+        mode="determinate"
+        [color]="progressColor()"
+        [shade]="300"
+        [value]="progressValue()"
+        ariaLabel="Notification time remaining"
+      ></tp-progress-bar>
+    }
+  </div>
+}

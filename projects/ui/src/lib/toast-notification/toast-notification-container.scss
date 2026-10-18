@@ -1,0 +1,24 @@
+:host {
+  position: fixed;
+  z-index: var(--tp-z-tooltip, 1400);
+  display: block;
+  box-sizing: border-box;
+  width: min(360px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  pointer-events: none;
+}
+
+.tp-toast-notification-container__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--tp-space-2, 8px);
+  max-height: inherit;
+  overflow-x: hidden;
+  overflow-y: auto;
+  pointer-events: none;
+}
+
+.tp-toast-notification-container__stack--above {
+  flex-direction: column-reverse;
+}

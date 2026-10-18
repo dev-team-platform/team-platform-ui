@@ -9,13 +9,13 @@
   height: calc(var(--tp-control-height-md) - var(--tp-space-1));
   overflow: hidden;
   border: 1px solid var(--tp-color-border-strong);
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
   background: var(--tp-color-surface);
   box-shadow: var(--tp-shadow-sm);
   transition: border-color var(--tp-transition-normal);
 
   &:focus-within {
-    border-width: 3px;
+    border-width: 2px;
     border-color: var(--tp-color-focus);
     box-shadow: none;
   }

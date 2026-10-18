@@ -25,5 +25,4 @@ export class TestChip {
     'indigo',
   ] as const;
   protected readonly chipVariants = ['filled', 'outlined', 'tonal', 'text'] as const;
-  protected readonly sizes = ['sm', 'md', 'lg'] as const;
 }

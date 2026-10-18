@@ -20,10 +20,14 @@
     </mat-label>
   }
   <input
-    #dateInput
+    #dateInput="matDatepickerInput"
     matInput
     class="tp-input-date-picker__control"
-    [value]="formattedValue()"
+    [matDatepicker]="picker"
+    [ngModel]="value()"
+    [ngModelOptions]="{ standalone: true }"
+    [min]="minDate()"
+    [max]="maxDate()"
     [placeholder]="placeholder()"
     [disabled]="disabled() || readonly()"
     [readonly]="true"
@@ -31,21 +35,20 @@
     [attr.name]="name() || null"
     [attr.aria-invalid]="showError()"
     [attr.aria-describedby]="showError() ? errorId : null"
+    (ngModelChange)="selectDate($event)"
     (blur)="markAsTouched()"
     (keydown)="clearOnKeydown($event)"
   />
-  <tp-date-picker
-    matIconSuffix
-    [value]="value()"
-    [color]="color()"
-    [minDate]="minDate()"
-    [maxDate]="maxDate()"
+  <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="disabled() || readonly()">
+    <span matDatepickerToggleIcon class="tp-icon material-symbols-outlined"> event </span>
+  </mat-datepicker-toggle>
+  <mat-datepicker
+    #picker
+    startView="month"
     [disabled]="disabled() || readonly()"
-    (pointerdown)="focusDateInput($event, dateInput)"
-    (click)="stopCalendarTriggerClick($event)"
-    (onOpened)="refocusDateInputAfterCalendarOpen(dateInput)"
-    (valueChange)="selectDate($event, dateInput)"
-  ></tp-date-picker>
+    [panelClass]="calendarPanelClass()"
+    [startAt]="startAt()"
+  ></mat-datepicker>
 </mat-form-field>
 
 @if (showError()) {

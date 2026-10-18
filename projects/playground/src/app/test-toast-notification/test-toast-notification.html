@@ -1,0 +1,66 @@
+<section class="component-section" aria-labelledby="toast-notification-title">
+  <div class="component-section__heading">
+    <h2 id="toast-notification-title">Toast notification</h2>
+    <code>&lt;tp-toast-notification-container&gt; + toast items</code>
+  </div>
+
+  <div class="example-row">
+    <tp-input-singleselect
+      title="Type"
+      [options]="toastTypes"
+      [(value)]="selectedType"
+      width="180px"
+      height="40px"
+      contentSize="sm"
+    ></tp-input-singleselect>
+    <tp-input-singleselect
+      title="Global position"
+      [options]="positions"
+      [value]="selectedPosition()"
+      (valueChange)="onPositionChange($event)"
+      width="180px"
+      height="40px"
+      contentSize="sm"
+    ></tp-input-singleselect>
+    <tp-input-singleselect
+      title="Global display mode"
+      [options]="toastDisplayModes"
+      [value]="selectedToastDisplayMode()"
+      (valueChange)="onToastDisplayModeChange($event)"
+      width="180px"
+      height="40px"
+      contentSize="sm"
+    ></tp-input-singleselect>
+    <tp-button (onClick)="pushStringToast()">Push string toast</tp-button>
+    <tp-button variant="outlined" (onClick)="pushTemplateToast()">Push template toast</tp-button>
+  </div>
+
+  <p>
+    Choose a type, then push a string or template toast. Each toast closes after five seconds or
+    when dismissed.
+  </p>
+
+  <div class="example-group">
+    <h3>Multiple toast stack</h3>
+    <p>
+      Choose where each new toast is pushed. The global container shows up to five at once; later
+      toasts wait until one closes.
+    </p>
+    <div class="example-row">
+      <tp-input-singleselect
+        title="Push mode"
+        [options]="pushModes"
+        [value]="selectedPushMode()"
+        (valueChange)="onPushModeChange($event)"
+        width="180px"
+        height="40px"
+        contentSize="sm"
+      ></tp-input-singleselect>
+      <tp-button (onClick)="pushStringToast()">Push toast</tp-button>
+    </div>
+  </div>
+
+  <ng-template #richMessage let-type="type" let-toastNumber="toastNumber">
+    Toast <strong>{{ toastNumber }}</strong>: a <strong>{{ type }}</strong> template message.
+  </ng-template>
+</section>

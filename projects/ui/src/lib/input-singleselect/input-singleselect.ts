@@ -90,6 +90,12 @@ export class TpInputSingleselect implements FormValueControl<TpSelectOption | nu
 
   protected readonly contentFontSize = computed(() => CONTENT_SIZE_MAP[this.contentSize()]);
   protected readonly focusColor = computed(() => `var(--tp-color-${this.color()}-600)`);
+  protected readonly selectedOptionBackgroundColor = computed(
+    () => `var(--tp-color-${this.color()}-100)`,
+  );
+  protected readonly selectedOptionTextColor = computed(
+    () => `var(--tp-color-${this.color()}-900)`,
+  );
 
   protected readonly isEmpty = computed(() => {
     const value = this.value();
@@ -102,9 +108,7 @@ export class TpInputSingleselect implements FormValueControl<TpSelectOption | nu
   protected readonly showError = computed(
     () =>
       !!this.error() ||
-      this.invalid() ||
-      this.errors().length > 0 ||
-      (this.touched() && this.hasRequiredError()),
+      (this.touched() && (this.invalid() || this.errors().length > 0 || this.hasRequiredError())),
   );
 
   protected readonly displayedError = computed(

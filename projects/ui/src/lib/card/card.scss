@@ -19,12 +19,12 @@
   --tp-card-border-color: var(--tp-color-border);
   --mat-card-outlined-container-color: var(--tp-card-color);
   --mat-card-outlined-outline-color: var(--tp-card-border-color);
-  --mat-card-outlined-container-shape: var(--tp-radius-xs);
+  --mat-card-outlined-container-shape: var(--tp-radius-sm);
 
   box-sizing: border-box;
   min-width: 0;
   border: 1px solid var(--tp-card-border-color);
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
   color: var(--tp-card-text-color);
   background-color: var(--tp-card-color);
   box-shadow: var(--tp-shadow-md);

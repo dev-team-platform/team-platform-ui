@@ -1,0 +1,52 @@
+<section class="component-section" aria-labelledby="popover-menu-title">
+  <div class="component-section__heading">
+    <h2 id="popover-menu-title">Popover menu</h2>
+    <code>&lt;tp-popover-menu&gt;</code>
+  </div>
+
+  <div class="example-group">
+    <p>Popover content is projected into a positioned panel. It has no backdrop.</p>
+    <div class="example-row">
+      <label for="popover-position">Position</label>
+      <select
+        id="popover-position"
+        aria-label="Popover position"
+        [value]="position()"
+        (change)="updatePosition($event)"
+      >
+        @for (option of positions; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+      <tp-button
+        cdkOverlayOrigin
+        #quickActionsOrigin="cdkOverlayOrigin"
+        (onClick)="quickActions.openPopover()"
+      >
+        Open by API
+      </tp-button>
+      <tp-popover-menu
+        #quickActions
+        [origin]="quickActionsOrigin"
+        ariaLabel="Quick actions"
+        [position]="position()"
+        width="280px"
+        maxWidth="90vw"
+        height="auto"
+        maxHeight="320px"
+      >
+        <div class="example-group">
+          <h3>Quick actions</h3>
+          <p>Everything in this panel is supplied by the consuming template.</p>
+          <div class="example-row">
+            <tp-button (onClick)="handleSelection('Rename'); quickActions.closePopover()">
+              Rename
+            </tp-button>
+            <tp-text-button (onClick)="quickActions.closePopover()">Close</tp-text-button>
+          </div>
+        </div>
+      </tp-popover-menu>
+    </div>
+    <p aria-live="polite">{{ lastAction() }}</p>
+  </div>
+</section>

@@ -8,8 +8,6 @@
   --tp-input-autocomplete-multiselect-max-height: none;
   --tp-input-autocomplete-multiselect-content-size: var(--tp-text-md);
   --tp-input-autocomplete-multiselect-focus-color: var(--tp-color-blue-600);
-  --tp-input-autocomplete-multiselect-chip-text-color: var(--tp-color-blue-900);
-  --tp-input-autocomplete-multiselect-chip-background-color: var(--tp-color-blue-100);
   --mat-form-field-outlined-focus-outline-color: var(
     --tp-input-autocomplete-multiselect-focus-color
   );
@@ -17,8 +15,8 @@
     --tp-input-autocomplete-multiselect-focus-color
   );
   --mat-form-field-outlined-caret-color: var(--tp-input-autocomplete-multiselect-focus-color);
-  --mat-form-field-outlined-focus-outline-width: 3px;
-  --mat-form-field-outlined-container-shape: var(--tp-radius-xs);
+  --mat-form-field-outlined-focus-outline-width: 2px;
+  --mat-form-field-outlined-container-shape: var(--tp-radius-sm);
   --mat-form-field-outlined-outline-color: var(--tp-color-border-strong);
   --mat-form-field-outlined-input-text-color: var(--tp-color-text-primary);
   --mat-form-field-outlined-label-text-color: var(--tp-color-text-secondary);
@@ -47,57 +45,20 @@
   cursor: not-allowed;
 }
 
-.tp-input-autocomplete-multiselect__chip {
-  display: inline-flex;
-  align-items: center;
+.tp-input-autocomplete-multiselect__value.tp-input-autocomplete-multiselect__value--inline {
+  flex-flow: row nowrap;
+  overflow-x: auto;
+}
+
+.tp-input-autocomplete-multiselect__value.tp-input-autocomplete-multiselect__value--inline
+  > .tp-input-autocomplete-multiselect__trigger {
+  flex: 1 1 48px;
+  min-width: 48px;
+}
+
+.tp-input-autocomplete-multiselect__value--newline > .tp-input-autocomplete-multiselect__trigger {
+  flex: 1 0 100%;
   min-width: 0;
-  max-width: 100%;
-  gap: var(--tp-space-1);
-  padding: 2px 4px 2px var(--tp-space-2);
-  border-radius: var(--tp-radius-full);
-  color: var(--tp-input-autocomplete-multiselect-chip-text-color);
-  background: var(--tp-input-autocomplete-multiselect-chip-background-color);
-  font-size: var(--tp-text-sm);
-  line-height: 20px;
-}
-
-.tp-input-autocomplete-multiselect__chip--remaining {
-  color: var(--tp-color-text-secondary);
-  background: var(--tp-color-gray-100);
-}
-
-.tp-input-autocomplete-multiselect__chip-label {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.tp-input-autocomplete-multiselect__chip-remove {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  padding: 0;
-  border: 0;
-  border-radius: var(--tp-radius-full);
-  color: inherit;
-  background: transparent;
-  cursor: pointer;
-
-  &:hover {
-    background: color-mix(in srgb, currentcolor 12%, transparent);
-  }
-
-  .tp-icon {
-    --tp-icon-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--tp-icon-size);
-    height: var(--tp-icon-size);
-    line-height: 1;
-  }
 }
 
 .tp-input-autocomplete-multiselect__trigger {
@@ -173,20 +134,13 @@
   }
 
   .tp-input-autocomplete-multiselect__trailing-action .tp-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
     width: var(--tp-icon-size);
     height: var(--tp-icon-size);
-    line-height: 1;
-  }
-
-  // Blink renders the Material Symbols glyph one pixel high within its centered line box.
-  // Offset only the painted icon so the suffix button and its hit area remain unchanged.
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    .tp-input-autocomplete-multiselect__trailing-action .tp-icon {
-      transform: translateY(1px);
-    }
+    font-size: var(--tp-icon-size);
+    line-height: var(--tp-icon-size);
+    text-align: center;
   }
 
   &:not(.tp-input-autocomplete-multiselect--has-values) {
@@ -213,6 +167,8 @@
 }
 
 ::ng-deep .tp-input-autocomplete-multiselect__panel {
+  overscroll-behavior-y: contain;
+
   .tp-input-autocomplete-multiselect__option .mdc-list-item__primary-text {
     display: flex;
     flex: 1 1 auto;
@@ -255,7 +211,7 @@
   }
 
   .tp-input-autocomplete-multiselect__select-all {
-    font-weight: 700;
+    font-weight: 500;
   }
 
   .tp-input-autocomplete-multiselect__feedback-content {
@@ -269,21 +225,16 @@
 
 :host ::ng-deep .tp-input-autocomplete-multiselect--invalid {
   --mat-form-field-outlined-focus-outline-color: var(--tp-color-red-600);
-  --mat-form-field-outlined-focus-label-text-color: var(--tp-color-red-600);
   --mat-form-field-outlined-caret-color: var(--tp-color-red-600);
-  --mat-form-field-outlined-focus-outline-width: 2px;
+  --mat-form-field-outlined-focus-outline-width: 1px;
 
   .mat-mdc-notch-piece {
     border-color: var(--tp-color-red-600);
-    border-width: 2px;
+    border-width: 1px;
   }
 
   .mdc-notched-outline__notch {
     border-right-color: transparent;
     border-left-color: transparent;
-  }
-
-  .mat-mdc-floating-label {
-    color: var(--tp-color-red-600);
   }
 }

@@ -1,6 +1,7 @@
 :host {
   --tp-table-row-height: 48px;
   --tp-table-header-height: 48px;
+  --tp-table-empty-row-height: 120px;
   display: block;
   color: var(--tp-color-text-primary);
   font-size: var(--tp-text-md);
@@ -9,13 +10,17 @@
 .tp-table__container {
   width: 100%;
   border: 1px solid var(--tp-color-border);
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
   overflow: hidden;
 }
 
 .tp-table__scroll-container {
   width: 100%;
   overflow: auto;
+}
+
+.tp-table__scroll-container--reserved-space {
+  min-height: calc(var(--tp-table-header-height) + var(--tp-table-empty-row-height));
 }
 
 .tp-table__table {
@@ -56,9 +61,6 @@ tbody td {
 }
 tbody tr {
   background-color: var(--tp-color-surface);
-}
-tbody tr:last-child td {
-  border-bottom: 0;
 }
 tbody tr:not(.tp-table__empty-row):hover {
   background-color: var(--tp-color-gray-100);
@@ -123,7 +125,7 @@ tbody tr:not(.tp-table__empty-row):hover {
 .tp-table__sort-button:focus-visible {
   outline: 2px solid var(--tp-color-focus);
   outline-offset: 2px;
-  border-radius: var(--tp-radius-xs);
+  border-radius: var(--tp-radius-sm);
 }
 .tp-table__sort-icon {
   width: 18px;
@@ -148,12 +150,18 @@ th:hover .tp-table__sort-icon,
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.tp-table__cell-content {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: var(--tp-table-row-height);
+}
 .tp-table__action-header,
 .tp-table__action-cell {
   width: 72px;
   min-width: 72px;
   padding: 0;
-  border-left: 1px solid var(--tp-color-border);
+  border-right: 1px solid var(--tp-color-border);
   text-align: center;
   overflow: hidden;
 }
@@ -175,6 +183,7 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
 }
 
 .tp-table__action-menu-content {
+  --tp-icon-size: 18px;
   display: grid;
   grid-auto-flow: row;
   align-items: stretch;
@@ -216,8 +225,9 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
 }
 
 .tp-table__empty-row td {
-  height: auto;
+  height: var(--tp-table-empty-row-height);
   padding: var(--tp-space-6) var(--tp-space-4);
+  border-bottom: 0;
   color: var(--tp-color-text-secondary);
   text-align: center;
 }

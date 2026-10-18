@@ -1,8 +1,10 @@
 :host {
   display: inline-flex;
+  max-width: 100%;
 }
 
 .tp-slide-toggle {
+  flex: 1 1 auto;
   --tp-slide-toggle-color: var(--tp-color-blue-500);
   --tp-slide-toggle-contrast-color: var(--tp-color-white);
   --mat-slide-toggle-label-text-color: var(--tp-color-text-primary);
