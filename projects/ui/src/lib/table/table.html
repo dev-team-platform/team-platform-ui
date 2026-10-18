@@ -6,6 +6,7 @@
 >
   <div
     class="tp-table__action-menu-content"
+    (click)="actionMenu.close.emit('click')"
     [style.width]="actionMenuWidthCss()"
     [style.height]="actionMenuHeightCss()"
   >
@@ -133,21 +134,23 @@
             }
             @for (column of columns(); track column.key) {
               <td [style.width]="column.width || null" [style.min-width]="column.minWidth || null">
-                @if (cellContentFor(column); as cellContent) {
-                  <ng-container
-                    [ngTemplateOutlet]="cellContent.template"
-                    [ngTemplateOutletContext]="cellContext(row, column)"
-                  ></ng-container>
-                } @else {
-                  @let cell = cellPresentation(row, column);
-                  <span
-                    class="tp-table__cell-value"
-                    [matTooltip]="cell.fullText"
-                    [matTooltipDisabled]="!cell.fullText"
-                    [matTooltipPositionAtOrigin]="true"
-                    >{{ cell.displayText }}</span
-                  >
-                }
+                <div class="tp-table__cell-content">
+                  @if (cellContentFor(column); as cellContent) {
+                    <ng-container
+                      [ngTemplateOutlet]="cellContent.template"
+                      [ngTemplateOutletContext]="cellContext(row, column)"
+                    ></ng-container>
+                  } @else {
+                    @let cell = cellPresentation(row, column);
+                    <span
+                      class="tp-table__cell-value"
+                      [matTooltip]="cell.fullText"
+                      [matTooltipDisabled]="!cell.fullText"
+                      [matTooltipPositionAtOrigin]="true"
+                      >{{ cell.displayText }}</span
+                    >
+                  }
+                </div>
               </td>
             }
           </tr>
