@@ -13,8 +13,6 @@
   [style.--tp-input-multiselect-max-height]="maxHeight()"
   [style.--tp-input-multiselect-content-size]="contentFontSize()"
   [style.--tp-input-multiselect-focus-color]="focusColor()"
-  [style.--tp-input-multiselect-chip-text-color]="selectedChipTextColor()"
-  [style.--tp-input-multiselect-chip-background-color]="selectedChipBackgroundColor()"
 >
   @if (title()) {
     <mat-label>
@@ -27,25 +25,18 @@
 
   <div class="tp-input-multiselect__value" (click)="openOptions()">
     @for (selectedValue of visibleSelectedValues(); track selectedValue) {
-      <span class="tp-input-multiselect__chip" [attr.title]="optionText(selectedValue)">
-        <span class="tp-input-multiselect__chip-label">{{ chipText(selectedValue) }}</span>
-        @if (!disabled() && !readonly()) {
-          <button
-            type="button"
-            class="tp-input-multiselect__chip-remove"
-            [attr.aria-label]="'Remove ' + optionText(selectedValue)"
-            (click)="removeOption(selectedValue, $event)"
-          >
-            <span class="tp-icon material-symbols-outlined" aria-hidden="true">close</span>
-          </button>
-        }
-      </span>
+      <tp-select-chip
+        [label]="chipText(selectedValue)"
+        [tooltipTitle]="optionText(selectedValue)"
+        [removeLabel]="'Remove ' + optionText(selectedValue)"
+        [removable]="!disabled() && !readonly()"
+        [color]="color()"
+        (remove)="removeOption(selectedValue)"
+      ></tp-select-chip>
     }
 
     @if (hiddenSelectedCount() > 0) {
-      <span class="tp-input-multiselect__chip tp-input-multiselect__chip--remaining">
-        + {{ hiddenSelectedCount() }} others
-      </span>
+      <tp-select-chip [label]="remainingChipLabel()" variant="remaining"></tp-select-chip>
     }
 
     <input
@@ -132,10 +123,11 @@
             class="tp-input-multiselect__option-control"
             [checked]="allSelected()"
             [indeterminate]="someSelected() && !allSelected()"
+            [color]="color()"
             [tabIndex]="-1"
             aria-hidden="true"
           ></tp-checkbox>
-          <b class="tp-input-multiselect__option-label">{{ selectAllOptionLabel() }}</b>
+          <span class="tp-input-multiselect__option-label">{{ selectAllOptionLabel() }}</span>
         </span>
       </mat-option>
       <mat-divider></mat-divider>
@@ -150,6 +142,7 @@
           <tp-checkbox
             class="tp-input-multiselect__option-control"
             [checked]="isSelected(option)"
+            [color]="color()"
             [tabIndex]="-1"
             aria-hidden="true"
           ></tp-checkbox>

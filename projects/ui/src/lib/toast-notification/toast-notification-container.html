@@ -1,0 +1,22 @@
+<div
+  class="tp-toast-notification-container__stack"
+  [class.tp-toast-notification-container__stack--above]="toastPushMode() === 'above'"
+  role="region"
+  aria-label="Toast notifications"
+>
+  @for (toast of visibleToasts(); track toast.id) {
+    <tp-toast-notification
+      [type]="toast.type"
+      [content]="toast.content"
+      [contentContext]="contentContext(toast)"
+      [duration]="toast.duration ?? toastDuration()"
+      [mode]="toastDisplayMode()"
+      [stacked]="true"
+      [width]="toastWidth()"
+      [height]="toastHeight()"
+      [maxWidth]="toastMaxWidth()"
+      [maxHeight]="toastMaxHeight()"
+      (closed)="removeToast(toast.id)"
+    ></tp-toast-notification>
+  }
+</div>

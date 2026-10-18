@@ -18,11 +18,15 @@
   }
 
   <div class="example-group">
-    <h3>Sizes</h3>
+    <h3>Dimensions</h3>
     <div class="example-row">
-      @for (size of sizes; track size) {
-        <tp-chip [size]="size">{{ size }}</tp-chip>
-      }
+      <tp-chip width="120px" height="24px" fontSize="12px">120 × 24</tp-chip>
+      <tp-chip width="180px" height="40px" maxWidth="180px" fontSize="14px">
+        180 × 40
+      </tp-chip>
+      <tp-chip width="240px" height="56px" maxWidth="240px" maxHeight="56px">
+        240 × 56
+      </tp-chip>
     </div>
   </div>
 </section>

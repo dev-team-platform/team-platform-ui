@@ -27,6 +27,14 @@
 }
 
 .tp-checkbox.mat-mdc-checkbox-disabled {
+  --mat-checkbox-selected-hover-icon-color: var(--mat-checkbox-disabled-selected-icon-color);
+  --mat-checkbox-unselected-hover-icon-color: var(--mat-checkbox-disabled-unselected-icon-color);
+  --mat-checkbox-selected-pressed-icon-color: var(--mat-checkbox-disabled-selected-icon-color);
+  --mat-checkbox-unselected-pressed-icon-color: var(--mat-checkbox-disabled-unselected-icon-color);
+  --mat-checkbox-selected-hover-state-layer-opacity: 0;
+  --mat-checkbox-unselected-hover-state-layer-opacity: 0;
+  --mat-checkbox-selected-pressed-state-layer-opacity: 0;
+  --mat-checkbox-unselected-pressed-state-layer-opacity: 0;
   pointer-events: auto;
   cursor: not-allowed;
 }

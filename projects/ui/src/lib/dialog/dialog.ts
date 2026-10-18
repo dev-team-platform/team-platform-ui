@@ -1,36 +1,22 @@
 import { NgStyle } from '@angular/common';
 import { CdkTrapFocus } from '@angular/cdk/a11y';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  model,
-  output,
-} from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
 
 @Component({
   selector: 'tp-dialog',
-  imports: [CdkTrapFocus, MatButtonModule, MatDialogModule, NgStyle],
+  imports: [CdkTrapFocus, NgStyle],
   templateUrl: './dialog.html',
   styleUrl: './dialog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TpDialog {
   open = model(false);
-  title = input('Dialog');
-  ariaLabel = input<string | null>(null);
-  color = input('var(--tp-color-surface-elevated)');
-  textColor = input('var(--tp-color-text-primary)');
-  borderColor = input('var(--tp-color-border)');
+  ariaLabel = input('Dialog');
   width = input('min(90vw, 560px)');
-  maxWidth = input('560px');
+  maxWidth = input('100vw');
   height = input('auto');
-  maxHeight = input('90vh');
-  closeOnBackdrop = input(true);
-  closeOnEscape = input(true);
+  maxHeight = input('100vh');
+  padding = input('0');
 
   onOpen = output<void>();
   onClose = output<void>();
@@ -38,13 +24,11 @@ export class TpDialog {
   protected readonly isOpen = this.open;
 
   protected readonly dialogStyle = computed(() => ({
-    '--tp-dialog-color': this.color(),
-    '--tp-dialog-text-color': this.textColor(),
-    '--tp-dialog-border-color': this.borderColor(),
     width: this.width(),
     maxWidth: this.maxWidth(),
     height: this.height(),
     maxHeight: this.maxHeight(),
+    padding: this.padding(),
   }));
 
   openDialog(): void {
@@ -59,18 +43,5 @@ export class TpDialog {
 
     this.isOpen.set(false);
     this.onClose.emit();
-  }
-
-  protected handleBackdropClick(event: MouseEvent): void {
-    if (this.closeOnBackdrop() && event.target === event.currentTarget) {
-      this.closeDialog();
-    }
-  }
-
-  protected handleEscape(event: Event): void {
-    event.stopPropagation();
-    if (this.isOpen() && this.closeOnEscape()) {
-      this.closeDialog();
-    }
   }
 }

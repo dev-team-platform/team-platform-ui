@@ -5,7 +5,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { TP_COMPONENT_COLOR_MAP, TpComponentColor } from '../utils/component-color';
 
 export type TpChipColor = TpComponentColor;
-export type TpChipSize = 'sm' | 'md' | 'lg';
 export type TpChipVariant = 'filled' | 'outlined' | 'tonal' | 'text';
 
 @Component({
@@ -17,9 +16,12 @@ export type TpChipVariant = 'filled' | 'outlined' | 'tonal' | 'text';
 })
 export class TpChip {
   color = input<TpChipColor>('blue');
-  size = input<TpChipSize>('md');
   variant = input<TpChipVariant>('filled');
   tooltipTitle = input<string | null>(null);
+  width = input('auto');
+  maxWidth = input('none');
+  height = input('var(--tp-control-height-sm)');
+  maxHeight = input('none');
   fontSize = input<string | null>(null);
   fontWeight = input<string | null>(null);
 
@@ -30,13 +32,16 @@ export class TpChip {
       '--tp-chip-color': color.color,
       '--tp-chip-label-color': color.contrast,
       '--tp-chip-tonal-bg': color.container,
+      width: this.width(),
+      maxWidth: this.maxWidth(),
+      height: this.height(),
+      maxHeight: this.maxHeight(),
       fontSize: this.fontSize(),
       fontWeight: this.fontWeight(),
     };
   });
 
   protected readonly chipClass = computed(() => ({
-    [`tp-chip--${this.size()}`]: true,
     [`tp-chip--${this.variant()}`]: true,
   }));
 }

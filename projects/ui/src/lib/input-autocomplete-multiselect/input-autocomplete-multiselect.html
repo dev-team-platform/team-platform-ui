@@ -13,8 +13,6 @@
   [style.--tp-input-autocomplete-multiselect-max-height]="maxHeight()"
   [style.--tp-input-autocomplete-multiselect-content-size]="contentFontSize()"
   [style.--tp-input-autocomplete-multiselect-focus-color]="focusColor()"
-  [style.--tp-input-autocomplete-multiselect-chip-text-color]="selectedChipTextColor()"
-  [style.--tp-input-autocomplete-multiselect-chip-background-color]="selectedChipBackgroundColor()"
 >
   @if (title()) {
     <mat-label>
@@ -25,34 +23,25 @@
     </mat-label>
   }
 
-  <div class="tp-input-autocomplete-multiselect__value" (click)="openOptions()">
+  <div
+    class="tp-input-autocomplete-multiselect__value"
+    [class.tp-input-autocomplete-multiselect__value--inline]="typingMode() === 'inline'"
+    [class.tp-input-autocomplete-multiselect__value--newline]="typingMode() === 'newline'"
+    (click)="openOptions()"
+  >
     @for (selectedValue of visibleSelectedValues(); track selectedValue) {
-      <span
-        class="tp-input-autocomplete-multiselect__chip"
-        [attr.title]="optionText(selectedValue)"
-      >
-        <span class="tp-input-autocomplete-multiselect__chip-label">{{
-          chipText(selectedValue)
-        }}</span>
-        @if (!disabled() && !readonly()) {
-          <button
-            type="button"
-            class="tp-input-autocomplete-multiselect__chip-remove"
-            [attr.aria-label]="'Remove ' + optionText(selectedValue)"
-            (click)="removeOption(selectedValue, $event)"
-          >
-            <span class="tp-icon material-symbols-outlined" aria-hidden="true">close</span>
-          </button>
-        }
-      </span>
+      <tp-select-chip
+        [label]="chipText(selectedValue)"
+        [tooltipTitle]="optionText(selectedValue)"
+        [removeLabel]="'Remove ' + optionText(selectedValue)"
+        [removable]="!disabled() && !readonly()"
+        [color]="color()"
+        (remove)="removeOption(selectedValue)"
+      ></tp-select-chip>
     }
 
     @if (hiddenSelectedCount() > 0) {
-      <span
-        class="tp-input-autocomplete-multiselect__chip tp-input-autocomplete-multiselect__chip--remaining"
-      >
-        + {{ hiddenSelectedCount() }} others
-      </span>
+      <tp-select-chip [label]="remainingChipLabel()" variant="remaining"></tp-select-chip>
     }
 
     <input
@@ -139,12 +128,13 @@
             class="tp-input-autocomplete-multiselect__option-control"
             [checked]="allOptionsSelected()"
             [indeterminate]="someOptionsSelected() && !allOptionsSelected()"
+            [color]="color()"
             [tabIndex]="-1"
             aria-hidden="true"
           ></tp-checkbox>
-          <b class="tp-input-autocomplete-multiselect__option-label">{{
+          <span class="tp-input-autocomplete-multiselect__option-label">{{
             selectAllOptionLabel()
-          }}</b>
+          }}</span>
         </span>
       </mat-option>
       <mat-divider></mat-divider>
@@ -159,6 +149,7 @@
           <tp-checkbox
             class="tp-input-autocomplete-multiselect__option-control"
             [checked]="isSelected(option)"
+            [color]="color()"
             [tabIndex]="-1"
             aria-hidden="true"
           ></tp-checkbox>

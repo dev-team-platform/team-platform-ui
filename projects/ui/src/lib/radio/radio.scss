@@ -24,6 +24,8 @@
 }
 
 .tp-radio.mat-mdc-radio-disabled {
+  --mat-radio-selected-hover-icon-color: var(--mat-radio-disabled-selected-icon-color);
+  --mat-radio-unselected-hover-icon-color: var(--mat-radio-disabled-unselected-icon-color);
   pointer-events: auto;
   cursor: not-allowed;
 }
