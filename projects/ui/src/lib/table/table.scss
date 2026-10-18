@@ -150,6 +150,12 @@ th:hover .tp-table__sort-icon,
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.tp-table__cell-content {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: var(--tp-table-row-height);
+}
 .tp-table__action-header,
 .tp-table__action-cell {
   width: 72px;
@@ -177,6 +183,7 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
 }
 
 .tp-table__action-menu-content {
+  --tp-icon-size: 18px;
   display: grid;
   grid-auto-flow: row;
   align-items: stretch;
