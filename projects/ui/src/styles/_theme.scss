@@ -4,12 +4,9 @@
   $primary: mat.$azure-palette,
   $tertiary: mat.$blue-palette,
   $theme-type: light,
-  $typography: Roboto,
+  $typography: 'Roboto Flex',
   $density: 0
 ) {
-  /*
-   * Generate the Angular Material theme and its system variables.
-   */
   @include mat.theme(
     (
       color: (
@@ -17,7 +14,13 @@
         tertiary: $tertiary,
         theme-type: $theme-type,
       ),
-      typography: $typography,
+      typography: (
+        plain-family: $typography,
+        brand-family: $typography,
+        regular-weight: 400,
+        medium-weight: 500,
+        bold-weight: 700,
+      ),
       density: $density,
     )
   );

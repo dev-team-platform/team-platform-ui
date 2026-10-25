@@ -1,0 +1,34 @@
+:host {
+  display: contents;
+}
+
+.tp-confirmation-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tp-space-4);
+  padding: var(--tp-space-6);
+}
+
+.tp-confirmation-dialog__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tp-confirmation-dialog__icon {
+  --tp-icon-size: 48px;
+}
+
+.tp-confirmation-dialog__body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.tp-confirmation-dialog__footer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(80px, 1fr));
+  align-self: center;
+  max-width: 100%;
+  gap: var(--tp-space-2);
+}

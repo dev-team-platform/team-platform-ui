@@ -48,6 +48,7 @@ export class TpTextArea implements FormValueControl<string> {
 
   protected readonly hasCharacterLimit = computed(() => this.maxLength() !== undefined);
 
+  protected readonly textAreaHeight = computed(() => `${this.rows() * 1.5}em`);
   protected readonly characterCount = computed(() => this.value().length);
   protected readonly focusColor = computed(() => `var(--tp-color-${this.color()}-600)`);
 

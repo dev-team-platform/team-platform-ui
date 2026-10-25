@@ -1,0 +1,26 @@
+<section class="component-section" aria-labelledby="input-filter-title">
+  <div class="component-section__heading">
+    <h2 id="input-filter-title">Input filter</h2>
+    <code>&lt;tp-input-filter&gt;</code>
+  </div>
+  <div class="input-grid">
+    <tp-input-filter
+      title="Project filter"
+      placeholder="Choose a project filter"
+      [value]="selectedFilter()"
+      (onOpen)="status.set('Filter menu opened.')"
+      (onClose)="status.set('Filter menu closed.')"
+    >
+      <div class="example-group" aria-label="Project filters">
+        <h3>Projects</h3>
+        <tp-button (onClick)="selectFilter('All projects')">All projects</tp-button>
+        <tp-button (onClick)="selectFilter('Active projects')">Active projects</tp-button>
+        <tp-button (onClick)="selectFilter('Archived projects')">Archived projects</tp-button>
+      </div>
+    </tp-input-filter>
+    <tp-input-filter title="Disabled filter" value="Unavailable" [disabled]="true">
+      <p>This menu is unavailable.</p>
+    </tp-input-filter>
+  </div>
+  <p aria-live="polite">{{ status() }} Parent value: {{ selectedFilter() }}</p>
+</section>

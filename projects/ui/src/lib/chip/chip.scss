@@ -19,7 +19,7 @@
   cursor: default;
   user-select: none;
   box-shadow: none;
-  font-size: 13px;
+  font-size: var(--tp-font-size-default);
   transition:
     background-color var(--tp-transition-fast),
     border-color var(--tp-transition-fast),
@@ -31,9 +31,11 @@
 }
 
 .tp-chip__content {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: var(--tp-space-2);
+  justify-content: center;
+  transform: translateY(calc(3%));
+  gap: var(--tp-space-1);
 }
 
 .tp-chip--filled {

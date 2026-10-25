@@ -3,6 +3,8 @@
   [class.tp-input-autocomplete-multiselect--invalid]="showError()"
   [class.tp-input-autocomplete-multiselect--disabled]="disabled()"
   [class.tp-input-autocomplete-multiselect--has-values]="selectedValues().length > 0"
+  [class.tp-input-autocomplete-multiselect--inline]="typingMode() === 'inline'"
+  [class.tp-input-autocomplete-multiselect--newline]="typingMode() === 'newline'"
   appearance="outline"
   [floatLabel]="floatLabel()"
   [hideRequiredMarker]="true"
@@ -87,7 +89,10 @@
       [disabled]="disabled() || readonly()"
       (click)="toggleOptions($event)"
     >
-      <span class="tp-icon material-symbols-outlined" aria-hidden="true">
+      <span
+        class="tp-icon material-symbols-outlined tp-input-autocomplete-multiselect__toggle-icon"
+        aria-hidden="true"
+      >
         {{ optionsOpen() ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
       </span>
     </button>

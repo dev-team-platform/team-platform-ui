@@ -1,0 +1,37 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.tp-input-filter__field {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+:host ::ng-deep .tp-input-filter__field .tp-input__control {
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.tp-input-filter__icon {
+  position: absolute;
+  top: 50% !important;
+  transform: translateY(calc(-50% + 1px)) !important;
+  right: 8px;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  color: var(--tp-color-text-secondary);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.tp-input-filter__field--disabled .tp-input-filter__icon {
+  color: var(--tp-color-gray-400);
+}
+
+.tp-input-filter__popover {
+  position: absolute;
+}

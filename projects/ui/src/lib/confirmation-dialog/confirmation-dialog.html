@@ -1,0 +1,41 @@
+<tp-dialog
+  [open]="open()"
+  [ariaLabel]="ariaLabel()"
+  [width]="width()"
+  maxWidth="calc(100vw - 32px)"
+  maxHeight="calc(100dvh - 32px)"
+>
+  <div class="tp-confirmation-dialog">
+    <header class="tp-confirmation-dialog__header">
+      <span
+        class="tp-icon material-symbols-outlined tp-confirmation-dialog__icon"
+        [style.color]="iconColor()"
+        aria-hidden="true"
+        >{{ icon() }}</span
+      >
+    </header>
+    <div class="tp-confirmation-dialog__body">
+      <ng-content></ng-content>
+    </div>
+    <footer class="tp-confirmation-dialog__footer">
+      <tp-button
+        variant="outlined"
+        [color]="cancelColor()"
+        [fullWidth]="true"
+        height="28px"
+        (onClick)="cancel()"
+      >
+        {{ cancelTitle() }}
+      </tp-button>
+      <tp-button
+        variant="filled"
+        [color]="resolvedConfirmColor()"
+        [fullWidth]="true"
+        height="28px"
+        (onClick)="confirm()"
+      >
+        {{ confirmTitle() }}
+      </tp-button>
+    </footer>
+  </div>
+</tp-dialog>

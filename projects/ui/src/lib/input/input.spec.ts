@@ -147,7 +147,7 @@ describe('Input', () => {
   });
 
   it.each([
-    ['sm', 'var(--tp-text-sm)'],
+    ['sm', 'var(--tp-font-size-default)'],
     ['md', 'var(--tp-text-md)'],
     ['lg', 'var(--tp-text-lg)'],
   ] as const)('should map %s content size to its typography token', async (size, token) => {

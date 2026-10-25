@@ -22,9 +22,9 @@ export class TpButton {
   tooltipTitle = input<string | null>(null);
   width = input('auto');
   maxWidth = input('none');
-  height = input('var(--tp-control-height-md)');
-  maxHeight = input('var(--tp-control-height-lg)');
-  fontSize = input('14px');
+  height = input('var(--tp-control-height-sm)');
+  maxHeight = input('var(--tp-control-height-md)');
+  fontSize = input('var(--tp-font-size-default)');
   fontWeight = input('500');
   onClick = output<MouseEvent>();
 

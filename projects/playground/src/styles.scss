@@ -7,6 +7,22 @@
   @include tp.base;
 }
 
+@font-face {
+  font-family: 'Roboto Flex';
+  src: url('/fonts/roboto/Roboto-Flex.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+}
+
+html {
+  @include tp.theme($typography: 'Roboto Flex');
+}
+
+body {
+  font-family: 'Roboto Flex', sans-serif;
+}
+
 .component-section {
   display: grid;
   gap: var(--tp-space-6);
