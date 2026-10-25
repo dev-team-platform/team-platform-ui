@@ -1,10 +1,11 @@
 :host {
-  --tp-table-row-height: 48px;
-  --tp-table-header-height: 48px;
+  --tp-table-row-height: 32px;
+  --tp-table-filter-row-height: 45px;
+  --tp-table-header-height: 40px;
   --tp-table-empty-row-height: 120px;
   display: block;
   color: var(--tp-color-text-primary);
-  font-size: var(--tp-text-md);
+  font-size: var(--tp-font-size-default);
 }
 
 .tp-table__container {
@@ -26,6 +27,8 @@
 .tp-table__table {
   width: max-content;
   min-width: 100%;
+  // Keep the last row's border inside the scrollport when scrolled to the bottom.
+  margin-bottom: 1px;
   border-collapse: separate;
   border-spacing: 0;
   table-layout: fixed;
@@ -34,14 +37,14 @@
 th,
 tbody td {
   box-sizing: border-box;
-  padding: 0 var(--tp-space-4);
+  padding: 0 var(--tp-space-3);
   border-bottom: 1px solid var(--tp-color-border);
   text-align: left;
   vertical-align: middle;
 }
 
 th {
-  height: 48px;
+  height: 40px;
   position: sticky;
   z-index: 1;
   top: 0;
@@ -69,8 +72,8 @@ tbody tr:not(.tp-table__empty-row):hover {
   position: sticky;
   z-index: 2;
   top: var(--tp-table-header-height);
-  height: auto;
-  padding: 6px var(--tp-space-2);
+  height: max(45px, var(--tp-table-filter-row-height));
+  padding: 0 var(--tp-space-2);
   background: var(--tp-color-surface);
   box-shadow: inset 0 1px 0 var(--tp-color-border);
   vertical-align: middle;
@@ -95,8 +98,8 @@ tbody tr:not(.tp-table__empty-row):hover {
   padding: 0;
 }
 .tp-table__loading-progress {
-  --mat-progress-bar-active-indicator-height: 3px;
-  --mat-progress-bar-track-height: 3px;
+  --mat-progress-bar-active-indicator-height: 2px;
+  --mat-progress-bar-track-height: 2px;
   --mat-progress-bar-track-color: transparent;
 }
 .tp-table__row--clickable {
@@ -128,11 +131,11 @@ tbody tr:not(.tp-table__empty-row):hover {
   border-radius: var(--tp-radius-sm);
 }
 .tp-table__sort-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   color: var(--tp-color-text-secondary);
-  font-size: 18px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 16px;
   opacity: 0;
   transition: opacity 120ms ease-in-out;
 }
@@ -158,8 +161,8 @@ th:hover .tp-table__sort-icon,
 }
 .tp-table__action-header,
 .tp-table__action-cell {
-  width: 72px;
-  min-width: 72px;
+  width: 56px;
+  min-width: 56px;
   padding: 0;
   border-right: 1px solid var(--tp-color-border);
   text-align: center;
@@ -183,7 +186,7 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
 }
 
 .tp-table__action-menu-content {
-  --tp-icon-size: 18px;
+  --tp-icon-size: 16px;
   display: grid;
   grid-auto-flow: row;
   align-items: stretch;
@@ -212,14 +215,21 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
 }
 
 .tp-table__action-trigger {
-  --tp-icon-size: 20px;
+  --tp-icon-size: 16px;
   --mat-icon-button-icon-color: var(--tp-color-text-secondary);
   --mat-icon-button-state-layer-color: var(--tp-color-text-secondary);
-  --mat-icon-button-state-layer-size: 36px;
-  --mat-icon-button-icon-size: 20px;
+  --mat-icon-button-state-layer-size: 24px;
+  --mat-icon-button-icon-size: 16px;
+  --mat-icon-button-touch-target-size: 32px;
+  --mat-icon-button-touch-target-display: none;
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 8px;
   margin: 0;
   transform: translate(-50%, -50%);
 }
@@ -236,24 +246,24 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
   display: flex;
   align-items: center;
   height: var(--tp-table-row-height);
-  min-height: 48px;
-  padding: 0 var(--tp-space-4);
+  min-height: 40px;
+  padding: 0 var(--tp-space-3);
   border-top: 1px solid var(--tp-color-border);
-  gap: var(--tp-space-3);
+  gap: var(--tp-space-2);
 }
 
 .tp-table__reload {
-  --tp-icon-size: 20px;
+  --tp-icon-size: 16px;
   --mat-icon-button-icon-color: var(--tp-color-text-secondary);
   --mat-icon-button-state-layer-color: var(--tp-color-text-secondary);
-  --mat-icon-button-state-layer-size: 28px;
-  --mat-icon-button-icon-size: 20px;
-  --mat-icon-button-touch-target-size: 28px;
+  --mat-icon-button-state-layer-size: 24px;
+  --mat-icon-button-icon-size: 16px;
+  --mat-icon-button-touch-target-size: 24px;
   --mat-icon-button-touch-target-display: none;
-  width: 28px;
-  min-width: 28px;
-  height: 28px;
-  min-height: 28px;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
   padding: 4px;
   flex: 0 0 auto;
 }
@@ -268,10 +278,10 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   line-height: 1;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .tp-table__reload-group {
@@ -349,18 +359,18 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
   /* Keep the pagination control compact so the icon stays centered even when
      the table's configured row height is narrow. Material's default 48px
      touch target otherwise makes the hover area appear shifted. */
-  --tp-icon-size: 18px;
+  --tp-icon-size: 16px;
   --mat-icon-button-icon-color: var(--tp-color-text-secondary);
   --mat-icon-button-state-layer-color: var(--tp-color-text-secondary);
-  --mat-icon-button-state-layer-size: 28px;
-  --mat-icon-button-icon-size: 18px;
-  --mat-icon-button-touch-target-size: 28px;
+  --mat-icon-button-state-layer-size: 24px;
+  --mat-icon-button-icon-size: 16px;
+  --mat-icon-button-touch-target-size: 24px;
   --mat-icon-button-touch-target-display: none;
-  width: 28px;
-  min-width: 28px;
-  height: 28px;
-  min-height: 28px;
-  padding: 5px;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  padding: 4px;
   align-self: center;
 }
 
@@ -368,10 +378,10 @@ tbody tr:not(.tp-table__empty-row):hover .tp-table__action-cell {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   line-height: 1;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 @media (max-width: 640px) {

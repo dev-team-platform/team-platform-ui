@@ -36,6 +36,7 @@ export class TpChip {
       maxWidth: this.maxWidth(),
       height: this.height(),
       maxHeight: this.maxHeight(),
+      '--mat-chip-label-text-size': this.fontSize() ?? 'var(--tp-font-size-default)',
       fontSize: this.fontSize(),
       fontWeight: this.fontWeight(),
     };

@@ -39,7 +39,7 @@ export type TpInputAutocompleteSingleselectContentSize = 'sm' | 'md' | 'lg';
 export type TpInputAutocompleteSingleselectColor = TpComponentColor;
 
 const CONTENT_SIZE_MAP: Record<TpInputAutocompleteSingleselectContentSize, string> = {
-  sm: 'var(--tp-text-sm)',
+  sm: 'var(--tp-font-size-default)',
   md: 'var(--tp-text-md)',
   lg: 'var(--tp-text-lg)',
 };
@@ -77,9 +77,9 @@ export class TpInputAutocompleteSingleselect implements FormValueControl<TpSelec
   requiredMessage = input('This field is required');
   width = input('100%');
   maxWidth = input('none');
-  height = input('var(--tp-control-height-md)');
-  maxHeight = input('var(--tp-control-height-lg)');
-  contentSize = input<TpInputAutocompleteSingleselectContentSize>('md');
+  height = input('var(--tp-control-height-sm)');
+  maxHeight = input('var(--tp-control-height-md)');
+  contentSize = input<TpInputAutocompleteSingleselectContentSize>('sm');
 
   private readonly suggestionsTrigger = viewChild(MatAutocompleteTrigger);
   private readonly scrollDispatcher = inject(ScrollDispatcher);

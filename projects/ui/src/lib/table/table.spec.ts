@@ -365,7 +365,7 @@ describe('TpTable', () => {
     expect(getComputedStyle(filterCell).position).toBe('sticky');
     expect(getComputedStyle(filterCell).top).toBe('var(--tp-table-header-height)');
     expect(getComputedStyle(filterCell).padding).toBe(
-      '6px var(--tp-space-2)',
+      '0px var(--tp-space-2)',
     );
     const scrollContainer = hostFixture.nativeElement.querySelector(
       '.tp-table__scroll-container',
@@ -400,8 +400,8 @@ describe('TpTable', () => {
       '.tp-table__action-header',
     ) as HTMLElement;
     const actionCell = fixture.nativeElement.querySelector('.tp-table__action-cell') as HTMLElement;
-    expect(getComputedStyle(actionHeader).width).toBe('72px');
-    expect(getComputedStyle(actionCell).width).toBe('72px');
+    expect(getComputedStyle(actionHeader).width).toBe('56px');
+    expect(getComputedStyle(actionCell).width).toBe('56px');
     expect(getComputedStyle(actionCell).position).toBe('relative');
   });
 

@@ -43,7 +43,7 @@
         variant="number"
         placeholder="ID"
         aria-label="Filter by ID"
-        height="40px"
+        height="32px"
         [(value)]="idFilter"
       ></tp-input>
     </ng-template>
@@ -52,7 +52,7 @@
         placeholder="Filter projects"
         ariaLabel="Filter by project"
         [options]="projectOptions"
-        height="40px"
+        height="32px"
         [(value)]="projectFilter"
       ></tp-input-autocomplete-singleselect>
     </ng-template>
@@ -61,7 +61,7 @@
         placeholder="Filter owners"
         ariaLabel="Filter by owner"
         [options]="ownerOptions"
-        height="40px"
+        height="32px"
         [(value)]="ownerFilter"
       ></tp-input-autocomplete-singleselect>
     </ng-template>
@@ -70,7 +70,7 @@
         placeholder="Filter teams"
         ariaLabel="Filter by team"
         [options]="teamOptions"
-        minHeight="40px"
+        minHeight="32px"
         [maxChips]="0"
         [(value)]="teamFilter"
       ></tp-input-autocomplete-multiselect>
@@ -80,7 +80,7 @@
         placeholder="Filter statuses"
         ariaLabel="Filter by status"
         [options]="statusOptions"
-        minHeight="40px"
+        minHeight="32px"
         [maxChips]="1"
         [(value)]="statusFilter"
       ></tp-input-autocomplete-multiselect>
@@ -88,12 +88,18 @@
     <ng-template tpTableFilter="updated">
       <tp-input-date-picker
         placeholder="Select date"
-        height="40px"
+        height="32px"
         [(value)]="updatedFilter"
       ></tp-input-date-picker>
     </ng-template>
     <ng-template tpTableFilter="description">
-      <tp-input placeholder="Description" height="40px" [(value)]="descriptionFilter"></tp-input>
+      <tp-input placeholder="Description" height="32px" [(value)]="descriptionFilter"></tp-input>
+    </ng-template>
+
+    <ng-template tpTableCell="name" let-proj>
+      <tp-chip color="blue" height="28px" fontSize="14px" variant="outlined">
+        {{ proj['name'].toUpperCase() }}
+      </tp-chip>
     </ng-template>
 
     <ng-template tpTableActionContent let-row>

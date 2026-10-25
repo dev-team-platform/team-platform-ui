@@ -105,8 +105,12 @@ export interface TpTableConfig<T extends object = Record<string, unknown>> {
   columns: readonly TpTableColumn<T>[];
   /** Color of the indeterminate progress bar shown while the table is loading. */
   loadingColor?: TpProgressBarColor;
+  /** Data row height. Defaults to 32px. */
   rowHeight?: string | number;
+  /** Filter row height. Defaults to 45px and cannot be smaller than 45px. */
+  filterRowHeight?: string | number;
   maxWidth?: string;
+  /** Maximum height of the scrollable table area. Defaults to the viewport height. */
   maxHeight?: string | number;
   maxCellContentLength?: number;
   rowsClickable?: boolean;
@@ -206,6 +210,7 @@ export class TpTableEmptyContent<T extends object = Record<string, unknown>> {
   selector: 'tp-table',
   host: {
     '[style.--tp-table-row-height]': 'rowHeightCss()',
+    '[style.--tp-table-filter-row-height]': 'filterRowHeightCss()',
   },
   imports: [
     CdkScrollable,
@@ -319,17 +324,20 @@ export class TpTable<T extends object = Record<string, unknown>> {
   }
 
   protected readonly tableWidthCss = computed(() => {
-    const widths = this.actionsEnabled() ? ['72px'] : [];
+    const widths = this.actionsEnabled() ? ['56px'] : [];
     widths.push(...this.columns().map((column) => this.columnWidth(column)));
     return widths.length ? `max(100%, calc(${widths.join(' + ')}))` : '100%';
   });
   protected readonly actionsEnabled = computed(() => this.actionColumn().enabled ?? false);
-  protected readonly actionTitle = computed(() => this.actionColumn().title ?? 'Action');
+  protected readonly actionTitle = computed(() => this.actionColumn().title ?? 'Actions');
   protected readonly rowHeightCss = computed(() =>
-    this.toCssSize(this.config().rowHeight ?? '48px'),
+    this.toCssSize(this.config().rowHeight ?? '36px'),
+  );
+  protected readonly filterRowHeightCss = computed(() =>
+    this.toCssSize(this.config().filterRowHeight ?? '45px'),
   );
   protected readonly maxHeightCss = computed(() =>
-    this.toCssSize(this.config().maxHeight ?? 'none'),
+    this.toCssSize(this.config().maxHeight ?? '100vh'),
   );
   protected readonly actionMenuWidthCss = computed(() =>
     this.toCssSize(this.actionColumn().menuWidth ?? 'auto'),

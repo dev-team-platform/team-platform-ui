@@ -21,17 +21,17 @@ export class TpSkeleton {
 
   protected readonly skeletonStyle = computed(() => {
     const variant = this.variant();
-    const defaultSize = variant === 'circle' ? 'var(--tp-control-height-md)' : '100%';
+    const defaultSize = variant === 'circle' ? 'var(--tp-space-6)' : '100%';
 
     return {
       width: this.width() ?? defaultSize,
       height:
         this.height() ??
         (variant === 'text'
-          ? 'var(--tp-space-4)'
+          ? 'var(--tp-space-3)'
           : variant === 'circle'
-            ? 'var(--tp-control-height-md)'
-            : '120px'),
+            ? 'var(--tp-space-6)'
+            : '96px'),
     };
   });
 }

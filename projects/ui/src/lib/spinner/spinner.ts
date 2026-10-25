@@ -20,8 +20,8 @@ export type TpSpinnerColor = TpComponentColor;
 })
 export class TpSpinner {
   color = input<TpSpinnerColor>('blue');
-  diameter = input(48, { transform: positiveNumberAttribute });
-  strokeWidth = input(4, { transform: positiveNumberAttribute });
+  diameter = input(32, { transform: positiveNumberAttribute });
+  strokeWidth = input(3, { transform: positiveNumberAttribute });
   ariaLabel = input('Loading');
 
   protected readonly spinnerStyle = computed(() => ({

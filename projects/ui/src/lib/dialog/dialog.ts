@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component, computed, input, model, output } fr
 export class TpDialog {
   open = model(false);
   ariaLabel = input('Dialog');
-  width = input('min(90vw, 560px)');
+  width = input('min(90vw, 480px)');
   maxWidth = input('100vw');
   height = input('auto');
   maxHeight = input('100vh');

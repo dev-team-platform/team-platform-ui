@@ -1,0 +1,53 @@
+<section class="component-section" aria-labelledby="confirmation-dialog-title">
+  <div class="component-section__heading">
+    <h2 id="confirmation-dialog-title">Confirmation dialog</h2>
+    <code>&lt;tp-confirmation-dialog&gt;</code>
+  </div>
+  <div class="example-row">
+    @for (type of types; track type) {
+      <tp-button (onClick)="show(type)">Open {{ type }}</tp-button>
+    }
+    <tp-button variant="outlined" (onClick)="customOpen.set(true)">Custom buttons</tp-button>
+  </div>
+  <p aria-live="polite">Last action: {{ result() }}</p>
+  <tp-confirmation-dialog
+    [(open)]="open"
+    [type]="type()"
+    ariaLabel="Confirm action"
+    (onConfirm)="result.set(type() + ': confirmed')"
+    (onCancel)="result.set(type() + ': canceled')"
+  >
+    <div class="example-group">
+      <h3>
+        {{
+          type() === 'delete-forever'
+            ? 'Delete this project forever?'
+            : 'Continue with this action?'
+        }}
+      </h3>
+      <p>
+        {{
+          type() === 'delete-forever'
+            ? 'The project and its data will be permanently removed.'
+            : 'Review the details before confirming your choice.'
+        }}
+      </p>
+    </div>
+  </tp-confirmation-dialog>
+  <tp-confirmation-dialog
+    [(open)]="customOpen"
+    type="question"
+    ariaLabel="Confirm with custom buttons"
+    cancelTitle="Go back"
+    cancelColor="purple"
+    confirmTitle="Proceed"
+    confirmColor="emerald"
+    (onConfirm)="result.set('custom: confirmed')"
+    (onCancel)="result.set('custom: canceled')"
+  >
+    <div class="example-group">
+      <h3>Ready to proceed?</h3>
+      <p>This example overrides both button labels and colors.</p>
+    </div>
+  </tp-confirmation-dialog>
+</section>

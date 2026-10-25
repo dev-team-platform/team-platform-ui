@@ -21,7 +21,7 @@ import {
 } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TpCheckbox } from '../checkbox/checkbox';
 import { TpSelectChip } from '../select-chip/select-chip';
@@ -45,7 +45,7 @@ export type TpInputAutocompleteMultiselectColor = TpComponentColor;
 export type TpInputAutocompleteMultiselectTypingMode = 'inline' | 'newline';
 
 const CONTENT_SIZE_MAP: Record<TpInputAutocompleteMultiselectContentSize, string> = {
-  sm: 'var(--tp-text-sm)',
+  sm: 'var(--tp-font-size-default)',
   md: 'var(--tp-text-md)',
   lg: 'var(--tp-text-lg)',
 };
@@ -93,9 +93,9 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
   requiredMessage = input('This field is required');
   width = input('100%');
   maxWidth = input('none');
-  minHeight = input('var(--tp-control-height-md)');
+  minHeight = input('var(--tp-control-height-sm)');
   maxHeight = input('none');
-  contentSize = input<TpInputAutocompleteMultiselectContentSize>('md');
+  contentSize = input<TpInputAutocompleteMultiselectContentSize>('sm');
   color = input<TpInputAutocompleteMultiselectColor>('blue');
   maxChipContentLength = input<number | undefined>(undefined);
   maxChips = input<number | undefined>(undefined);
@@ -105,6 +105,7 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
   private readonly destroyRef = inject(DestroyRef);
   private readonly scrollDispatcher = inject(ScrollDispatcher);
   private readonly optionsTrigger = viewChild(MatAutocompleteTrigger);
+  private readonly formField = viewChild(MatFormField);
   private readonly triggerInput = viewChild<ElementRef<HTMLInputElement>>('triggerInput');
   protected readonly optionsOpen = signal(false);
   private panelPositionUpdateQueued = false;
@@ -141,7 +142,7 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
   protected readonly contentFontSize = computed(() => CONTENT_SIZE_MAP[this.contentSize()]);
   protected readonly focusColor = computed(() => `var(--tp-color-${this.color()}-600)`);
   protected readonly floatLabel = computed<'always' | 'auto'>(() =>
-    this.title() || this.selectedValues().length ? 'always' : 'auto',
+    this.selectedValues().length ? 'always' : 'auto',
   );
   protected readonly isEmpty = computed(() => this.selectedValues().length === 0);
   protected readonly hasRequiredError = computed(() => this.required() && this.isEmpty());
@@ -227,6 +228,12 @@ export class TpInputAutocompleteMultiselect implements FormValueControl<TpSelect
 
   protected setOptionsOpen(open: boolean): void {
     this.optionsOpen.set(open);
+    // Autocomplete resets a label it floated while opening an empty input.
+    // Keep the title above the chips after that panel closes.
+    if (!open) {
+      const formField = this.formField();
+      if (formField) formField.floatLabel = this.floatLabel();
+    }
   }
 
   protected markAsTouched(): void {
