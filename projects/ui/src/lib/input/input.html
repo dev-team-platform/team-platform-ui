@@ -35,7 +35,7 @@
     [attr.step]="variant() === 'number' ? step() : null"
     [attr.aria-invalid]="showError()"
     [attr.aria-describedby]="showError() ? errorId : null"
-    (blur)="markAsTouched()"
+    (blur)="markAsTouched($event)"
     (input)="updateValue($event)"
   />
 

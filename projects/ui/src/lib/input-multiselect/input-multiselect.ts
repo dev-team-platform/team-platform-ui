@@ -43,7 +43,7 @@ export type TpInputMultiselectContentSize = 'sm' | 'md' | 'lg';
 export type TpInputMultiselectColor = TpComponentColor;
 
 const CONTENT_SIZE_MAP: Record<TpInputMultiselectContentSize, string> = {
-  sm: 'var(--tp-text-sm)',
+  sm: 'var(--tp-font-size-default)',
   md: 'var(--tp-text-md)',
   lg: 'var(--tp-text-lg)',
 };

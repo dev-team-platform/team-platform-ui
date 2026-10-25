@@ -13,7 +13,7 @@
   border-radius: var(--tp-radius-sm);
   background: var(--tp-color-surface);
   box-shadow: var(--tp-shadow-sm);
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
   transition: border-color var(--tp-transition-normal);
 
   &:focus-within {

@@ -45,7 +45,7 @@ export type TpInputAutocompleteMultiselectColor = TpComponentColor;
 export type TpInputAutocompleteMultiselectTypingMode = 'inline' | 'newline';
 
 const CONTENT_SIZE_MAP: Record<TpInputAutocompleteMultiselectContentSize, string> = {
-  sm: 'var(--tp-text-sm)',
+  sm: 'var(--tp-font-size-default)',
   md: 'var(--tp-text-md)',
   lg: 'var(--tp-text-lg)',
 };

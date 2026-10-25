@@ -24,7 +24,7 @@ export class TpButton {
   maxWidth = input('none');
   height = input('var(--tp-control-height-sm)');
   maxHeight = input('var(--tp-control-height-md)');
-  fontSize = input('var(--tp-text-sm)');
+  fontSize = input('var(--tp-font-size-default)');
   fontWeight = input('500');
   onClick = output<MouseEvent>();
 

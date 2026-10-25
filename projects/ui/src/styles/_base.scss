@@ -1,4 +1,6 @@
 @mixin base() {
+  --tp-font-size-default: var(--tp-text-md);
+
   box-sizing: border-box;
 
   *,
@@ -12,6 +14,7 @@
     color: var(--tp-color-text-primary);
     background: var(--tp-color-background);
     font: var(--mat-sys-body-medium);
+    font-size: var(--tp-font-size-default);
   }
 
   button,

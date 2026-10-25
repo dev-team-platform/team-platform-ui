@@ -6,7 +6,7 @@
 .tp-input-autocomplete-multiselect {
   --tp-input-autocomplete-multiselect-min-height: var(--tp-control-height-sm);
   --tp-input-autocomplete-multiselect-max-height: none;
-  --tp-input-autocomplete-multiselect-content-size: var(--tp-text-sm);
+  --tp-input-autocomplete-multiselect-content-size: var(--tp-font-size-default);
   --tp-input-autocomplete-multiselect-focus-color: var(--tp-color-blue-600);
   --mat-form-field-outlined-focus-outline-color: var(
     --tp-input-autocomplete-multiselect-focus-color
@@ -102,7 +102,7 @@
   margin-top: var(--tp-space-1);
   padding: 0 var(--tp-space-3);
   color: var(--tp-color-red-600);
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
 }
 
 .tp-input-autocomplete-multiselect__required-marker {
@@ -111,8 +111,8 @@
 
 :host ::ng-deep .tp-input-autocomplete-multiselect {
   .mdc-floating-label:not(.mdc-floating-label--float-above) {
-    top: 50%;
-    transform: translateY(calc(-50% - 1px));
+    top: 50% !important;
+    transform: translateY(calc(-50%)) !important;
   }
 
   .mat-mdc-text-field-wrapper.mdc-text-field--outlined,
@@ -235,7 +235,7 @@
 
 ::ng-deep .tp-input-autocomplete-multiselect__panel {
   overscroll-behavior-y: contain;
-  --mat-option-label-text-size: var(--tp-text-sm);
+  --mat-option-label-text-size: var(--tp-font-size-default);
 
   .mat-mdc-option {
     min-height: 40px;

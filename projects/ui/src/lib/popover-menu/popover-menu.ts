@@ -30,55 +30,19 @@ export type TpPopoverMenuPosition =
   | 'right'
   | 'right-end';
 
-const POSITION_PAIRS: Record<TpPopoverMenuPosition, [ConnectedPosition, ConnectedPosition]> = {
-  'top-start': [
-    { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' },
-    { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
-  ],
-  top: [
-    { originX: 'center', originY: 'top', overlayX: 'center', overlayY: 'bottom' },
-    { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top' },
-  ],
-  'top-end': [
-    { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
-    { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' },
-  ],
-  'bottom-start': [
-    { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
-    { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' },
-  ],
-  bottom: [
-    { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top' },
-    { originX: 'center', originY: 'top', overlayX: 'center', overlayY: 'bottom' },
-  ],
-  'bottom-end': [
-    { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' },
-    { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
-  ],
-  'left-start': [
-    { originX: 'start', originY: 'top', overlayX: 'end', overlayY: 'top' },
-    { originX: 'end', originY: 'top', overlayX: 'start', overlayY: 'top' },
-  ],
-  left: [
-    { originX: 'start', originY: 'center', overlayX: 'end', overlayY: 'center' },
-    { originX: 'end', originY: 'center', overlayX: 'start', overlayY: 'center' },
-  ],
-  'left-end': [
-    { originX: 'start', originY: 'bottom', overlayX: 'end', overlayY: 'bottom' },
-    { originX: 'end', originY: 'bottom', overlayX: 'start', overlayY: 'bottom' },
-  ],
-  'right-start': [
-    { originX: 'end', originY: 'top', overlayX: 'start', overlayY: 'top' },
-    { originX: 'start', originY: 'top', overlayX: 'end', overlayY: 'top' },
-  ],
-  right: [
-    { originX: 'end', originY: 'center', overlayX: 'start', overlayY: 'center' },
-    { originX: 'start', originY: 'center', overlayX: 'end', overlayY: 'center' },
-  ],
-  'right-end': [
-    { originX: 'end', originY: 'bottom', overlayX: 'start', overlayY: 'bottom' },
-    { originX: 'start', originY: 'bottom', overlayX: 'end', overlayY: 'bottom' },
-  ],
+const POSITIONS: Record<TpPopoverMenuPosition, ConnectedPosition> = {
+  'top-start': { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom' },
+  top: { originX: 'center', originY: 'top', overlayX: 'center', overlayY: 'bottom' },
+  'top-end': { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom' },
+  'bottom-start': { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' },
+  bottom: { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top' },
+  'bottom-end': { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top' },
+  'left-start': { originX: 'start', originY: 'top', overlayX: 'end', overlayY: 'top' },
+  left: { originX: 'start', originY: 'center', overlayX: 'end', overlayY: 'center' },
+  'left-end': { originX: 'start', originY: 'bottom', overlayX: 'end', overlayY: 'bottom' },
+  'right-start': { originX: 'end', originY: 'top', overlayX: 'start', overlayY: 'top' },
+  right: { originX: 'end', originY: 'center', overlayX: 'start', overlayY: 'center' },
+  'right-end': { originX: 'end', originY: 'bottom', overlayX: 'start', overlayY: 'bottom' },
 };
 
 @Component({
@@ -109,16 +73,13 @@ export class TpPopoverMenu {
 
   protected readonly positions = computed(() => {
     const position = this.position();
-    const [preferred, fallback] = POSITION_PAIRS[position];
+    const connectedPosition = POSITIONS[position];
     const gap = 8;
     const isHorizontal = position.startsWith('left') || position.startsWith('right');
-    const preferredOffsetX = isHorizontal ? (position.startsWith('right') ? gap : -gap) : 0;
-    const preferredOffsetY = isHorizontal ? 0 : position.startsWith('bottom') ? gap : -gap;
+    const offsetX = isHorizontal ? (position.startsWith('right') ? gap : -gap) : 0;
+    const offsetY = isHorizontal ? 0 : position.startsWith('bottom') ? gap : -gap;
 
-    return [
-      { ...preferred, offsetX: preferredOffsetX, offsetY: preferredOffsetY },
-      { ...fallback, offsetX: -preferredOffsetX, offsetY: -preferredOffsetY },
-    ] satisfies ConnectedPosition[];
+    return [{ ...connectedPosition, offsetX, offsetY }] satisfies ConnectedPosition[];
   });
 
   protected readonly panelStyle = computed(() => ({

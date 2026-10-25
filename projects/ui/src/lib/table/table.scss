@@ -1,10 +1,11 @@
 :host {
   --tp-table-row-height: 32px;
+  --tp-table-filter-row-height: 45px;
   --tp-table-header-height: 40px;
   --tp-table-empty-row-height: 120px;
   display: block;
   color: var(--tp-color-text-primary);
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
 }
 
 .tp-table__container {
@@ -71,7 +72,7 @@ tbody tr:not(.tp-table__empty-row):hover {
   position: sticky;
   z-index: 2;
   top: var(--tp-table-header-height);
-  height: var(--tp-table-row-height);
+  height: max(45px, var(--tp-table-filter-row-height));
   padding: 0 var(--tp-space-2);
   background: var(--tp-color-surface);
   box-shadow: inset 0 1px 0 var(--tp-color-border);

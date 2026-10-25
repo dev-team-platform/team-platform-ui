@@ -13,10 +13,10 @@
   --mat-form-field-outlined-input-text-color: var(--tp-color-text-primary);
   --mat-form-field-outlined-label-text-color: var(--tp-color-text-secondary);
   --mat-form-field-error-text-color: var(--tp-color-red-600);
-  --mat-form-field-container-text-size: var(--tp-text-sm);
+  --mat-form-field-container-text-size: var(--tp-font-size-default);
   --mat-form-field-container-vertical-padding: var(--tp-space-2);
-  --mat-form-field-outlined-label-text-size: var(--tp-text-sm);
-  --mat-form-field-outlined-label-text-populated-size: var(--tp-text-sm);
+  --mat-form-field-outlined-label-text-size: var(--tp-font-size-default);
+  --mat-form-field-outlined-label-text-populated-size: var(--tp-font-size-default);
 }
 
 .tp-text-area__control {
@@ -25,7 +25,7 @@
   min-height: 0;
   padding: 2px 2px;
   resize: vertical;
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
   line-height: 1.5;
 }
 
@@ -37,7 +37,7 @@
   margin-top: var(--tp-space-1);
   padding: 0 var(--tp-space-3);
   color: var(--tp-color-red-600);
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
 }
 
 .tp-text-area__required-marker {
@@ -45,8 +45,8 @@
 }
 
 :host ::ng-deep .tp-text-area .mdc-floating-label:not(.mdc-floating-label--float-above) {
-  top: 20px;
-  transform: translateY(calc(-50% - var(--tp-space-1)));
+  top: 20px !important;
+  transform: translateY(calc(-50%)) !important;
 }
 
 :host ::ng-deep .tp-text-area--invalid {

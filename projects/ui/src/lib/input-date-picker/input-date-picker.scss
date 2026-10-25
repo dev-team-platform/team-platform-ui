@@ -20,9 +20,9 @@
     var(--tp-input-date-picker-max-height)
   );
   --mat-form-field-container-vertical-padding: 0px;
-  --mat-form-field-container-text-size: var(--tp-text-sm);
-  --mat-form-field-outlined-label-text-size: var(--tp-text-sm);
-  --mat-form-field-outlined-label-text-populated-size: var(--tp-text-sm);
+  --mat-form-field-container-text-size: var(--tp-font-size-default);
+  --mat-form-field-outlined-label-text-size: var(--tp-font-size-default);
+  --mat-form-field-outlined-label-text-populated-size: var(--tp-font-size-default);
   box-sizing: border-box;
   width: 100%;
   height: min(var(--tp-input-date-picker-height), var(--tp-input-date-picker-max-height));
@@ -33,7 +33,7 @@
   box-sizing: border-box;
   height: 100%;
   max-height: 100%;
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
   line-height: var(--mat-form-field-container-height);
   margin: 0;
   padding-block: 0;
@@ -68,8 +68,8 @@
 
 :host ::ng-deep .tp-input-date-picker {
   .mdc-floating-label:not(.mdc-floating-label--float-above) {
-    top: 50%;
-    transform: translateY(calc(-50% - 1px));
+    top: 50% !important;
+    transform: translateY(calc(-50%)) !important;
   }
 
   .mat-mdc-text-field-wrapper.mdc-text-field--outlined,
@@ -111,7 +111,7 @@
   margin-top: var(--tp-space-1);
   padding: 0 var(--tp-space-3);
   color: var(--tp-color-red-600);
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
 }
 
 :host ::ng-deep .tp-input-date-picker--invalid {
@@ -133,8 +133,8 @@
 :host ::ng-deep .tp-input-date-picker-calendar {
   width: 320px;
   height: auto;
-  --mat-datepicker-calendar-text-size: var(--tp-text-sm);
-  --mat-datepicker-calendar-header-text-size: var(--tp-text-sm);
+  --mat-datepicker-calendar-text-size: var(--tp-font-size-default);
+  --mat-datepicker-calendar-header-text-size: var(--tp-font-size-default);
   --tp-input-date-picker-selected-color: var(--tp-color-blue-600);
   --mat-datepicker-calendar-date-today-outline-color: var(--tp-input-date-picker-selected-color);
   --mat-datepicker-calendar-date-focus-state-background-color: transparent;

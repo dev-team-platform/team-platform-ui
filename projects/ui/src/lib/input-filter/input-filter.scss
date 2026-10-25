@@ -16,19 +16,22 @@
 
 .tp-input-filter__icon {
   position: absolute;
-  top: 50%;
-  transform: translateY(calc(-50% + 2px));
+  top: 50% !important;
+  transform: translateY(calc(-50% + 1px)) !important;
   right: 8px;
   display: grid;
   width: 20px;
   height: 20px;
   place-items: center;
   color: var(--tp-color-text-secondary);
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 18px;
   pointer-events: none;
 }
 
 .tp-input-filter__field--disabled .tp-input-filter__icon {
   color: var(--tp-color-gray-400);
+}
+
+.tp-input-filter__popover {
+  position: absolute;
 }

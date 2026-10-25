@@ -6,7 +6,7 @@
 .tp-input-autocomplete-singleselect {
   --tp-input-autocomplete-singleselect-height: var(--tp-control-height-sm);
   --tp-input-autocomplete-singleselect-max-height: var(--tp-control-height-md);
-  --tp-input-autocomplete-singleselect-content-size: var(--tp-text-sm);
+  --tp-input-autocomplete-singleselect-content-size: var(--tp-font-size-default);
   --tp-input-autocomplete-singleselect-focus-color: var(--tp-color-blue-600);
   --mat-form-field-outlined-focus-outline-color: var(
     --tp-input-autocomplete-singleselect-focus-color
@@ -66,8 +66,8 @@
 
 :host ::ng-deep .tp-input-autocomplete-singleselect {
   .mdc-floating-label:not(.mdc-floating-label--float-above) {
-    top: 50%;
-    transform: translateY(calc(-50% - 1px));
+    top: 50% !important;
+    transform: translateY(calc(-50%)) !important;
   }
 
   .mat-mdc-text-field-wrapper.mdc-text-field--outlined,
@@ -144,7 +144,7 @@
   margin-top: var(--tp-space-1);
   padding: 0 var(--tp-space-3);
   color: var(--tp-color-red-600);
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
 }
 
 .tp-input-autocomplete-singleselect__required-marker {
@@ -153,7 +153,7 @@
 
 ::ng-deep .tp-input-autocomplete-singleselect__panel {
   overscroll-behavior-y: contain;
-  --mat-option-label-text-size: var(--tp-text-sm);
+  --mat-option-label-text-size: var(--tp-font-size-default);
 
   .mat-mdc-option {
     min-height: 40px;

@@ -39,7 +39,7 @@ export type TpInputAutocompleteSingleselectContentSize = 'sm' | 'md' | 'lg';
 export type TpInputAutocompleteSingleselectColor = TpComponentColor;
 
 const CONTENT_SIZE_MAP: Record<TpInputAutocompleteSingleselectContentSize, string> = {
-  sm: 'var(--tp-text-sm)',
+  sm: 'var(--tp-font-size-default)',
   md: 'var(--tp-text-md)',
   lg: 'var(--tp-text-lg)',
 };

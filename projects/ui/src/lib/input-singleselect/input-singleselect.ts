@@ -33,7 +33,7 @@ export type TpInputSingleselectContentSize = 'sm' | 'md' | 'lg';
 export type TpInputSingleselectColor = TpComponentColor;
 
 const CONTENT_SIZE_MAP: Record<TpInputSingleselectContentSize, string> = {
-  sm: 'var(--tp-text-sm)',
+  sm: 'var(--tp-font-size-default)',
   md: 'var(--tp-text-md)',
   lg: 'var(--tp-text-lg)',
 };

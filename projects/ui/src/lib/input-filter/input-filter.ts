@@ -2,6 +2,7 @@ import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   input,
   model,
@@ -44,6 +45,7 @@ export class TpInputFilter {
   requiredMessage = input('This field is required');
   width = input('100%');
   maxWidth = input('none');
+  menuWidth = input<string | null>(null);
   height = input('var(--tp-control-height-sm)');
   maxHeight = input('var(--tp-control-height-md)');
   contentSize = input<TpInputContentSize>('sm');
@@ -52,7 +54,10 @@ export class TpInputFilter {
   onClose = output<void>();
 
   private readonly origin = viewChild(CdkOverlayOrigin);
-  protected readonly popoverWidth = signal(0);
+  protected readonly measuredPopoverWidth = signal(0);
+  protected readonly effectivePopoverWidth = computed(
+    () => this.menuWidth() ?? `${this.measuredPopoverWidth()}px`,
+  );
   private previousOpen = false;
 
   constructor() {
@@ -62,7 +67,7 @@ export class TpInputFilter {
       this.previousOpen = isOpen;
       if (isOpen) {
         const element = this.origin()?.elementRef.nativeElement;
-        if (element) this.popoverWidth.set(element.getBoundingClientRect().width);
+        if (element) this.measuredPopoverWidth.set(element.getBoundingClientRect().width);
         this.onOpen.emit();
       } else {
         this.onClose.emit();
@@ -73,7 +78,7 @@ export class TpInputFilter {
   protected openFilter(): void {
     if (this.disabled()) return;
     const element = this.origin()?.elementRef.nativeElement;
-    if (element) this.popoverWidth.set(element.getBoundingClientRect().width);
+    if (element) this.measuredPopoverWidth.set(element.getBoundingClientRect().width);
     this.open.set(true);
   }
 }

@@ -6,7 +6,7 @@
 .tp-input {
   --tp-input-height: var(--tp-control-height-sm);
   --tp-input-max-height: var(--tp-control-height-md);
-  --tp-input-content-size: var(--tp-text-sm);
+  --tp-input-content-size: var(--tp-font-size-default);
   --tp-input-focus-color: var(--tp-color-blue-600);
   --mat-form-field-outlined-focus-outline-color: var(--tp-input-focus-color);
   --mat-form-field-outlined-focus-label-text-color: var(--tp-input-focus-color);
@@ -41,8 +41,8 @@
 
 :host ::ng-deep .tp-input {
   .mdc-floating-label:not(.mdc-floating-label--float-above) {
-    top: 50%;
-    transform: translateY(calc(-50% - 1px));
+    top: 50% !important;
+    transform: translateY(calc(-50%)) !important;
   }
 
   .mat-mdc-text-field-wrapper.mdc-text-field--outlined,
@@ -74,7 +74,7 @@
   margin-top: var(--tp-space-1);
   padding: 0 var(--tp-space-3);
   color: var(--tp-color-red-600);
-  font-size: var(--tp-text-sm);
+  font-size: var(--tp-font-size-default);
 }
 
 :host ::ng-deep .tp-input--invalid {

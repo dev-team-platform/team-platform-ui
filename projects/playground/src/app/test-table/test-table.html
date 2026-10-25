@@ -96,6 +96,12 @@
       <tp-input placeholder="Description" height="32px" [(value)]="descriptionFilter"></tp-input>
     </ng-template>
 
+    <ng-template tpTableCell="name" let-proj>
+      <tp-chip color="blue" height="28px" fontSize="14px" variant="outlined">
+        {{ proj['name'].toUpperCase() }}
+      </tp-chip>
+    </ng-template>
+
     <ng-template tpTableActionContent let-row>
       <tp-text-button
         pressEffectShape="rect"

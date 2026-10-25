@@ -35,12 +35,13 @@
 </div>
 
 <tp-popover-menu
+  class="tp-input-filter__popover"
   [(open)]="open"
   [origin]="filterOrigin"
-  position="top-start"
+  position="bottom"
   ariaLabel="Filter options"
-  [width]="popoverWidth() + 'px'"
-  [maxWidth]="popoverWidth() + 'px'"
+  [width]="effectivePopoverWidth()"
+  [maxWidth]="effectivePopoverWidth()"
 >
   <ng-content></ng-content>
 </tp-popover-menu>
