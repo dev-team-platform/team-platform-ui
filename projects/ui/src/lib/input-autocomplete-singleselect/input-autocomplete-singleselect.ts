@@ -77,9 +77,9 @@ export class TpInputAutocompleteSingleselect implements FormValueControl<TpSelec
   requiredMessage = input('This field is required');
   width = input('100%');
   maxWidth = input('none');
-  height = input('var(--tp-control-height-md)');
-  maxHeight = input('var(--tp-control-height-lg)');
-  contentSize = input<TpInputAutocompleteSingleselectContentSize>('md');
+  height = input('var(--tp-control-height-sm)');
+  maxHeight = input('var(--tp-control-height-md)');
+  contentSize = input<TpInputAutocompleteSingleselectContentSize>('sm');
 
   private readonly suggestionsTrigger = viewChild(MatAutocompleteTrigger);
   private readonly scrollDispatcher = inject(ScrollDispatcher);

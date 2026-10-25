@@ -1,12 +1,7 @@
-<mat-menu
-  #actionMenu="matMenu"
-  xPosition="after"
-  yPosition="below"
-  class="tp-table__action-menu"
->
+<mat-menu #actionMenu="matMenu" xPosition="after" yPosition="below" class="tp-table__action-menu">
   <div
     class="tp-table__action-menu-content"
-    (click)="actionMenu.close.emit('click')"
+    (click)="actionMenu.closed.emit('click')"
     [style.width]="actionMenuWidthCss()"
     [style.height]="actionMenuHeightCss()"
   >
@@ -44,7 +39,7 @@
     >
       <colgroup>
         @if (actionsEnabled()) {
-          <col style="width: 72px" />
+          <col style="width: 56px" />
         }
         @for (column of columns(); track column.key) {
           <col [style.width]="columnWidth(column)" />

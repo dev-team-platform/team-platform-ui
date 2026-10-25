@@ -154,8 +154,8 @@ export class TpInputDatePicker implements FormValueControl<Date | null>, OnChang
   name = input('');
   width = input('100%');
   maxWidth = input('none');
-  height = input('var(--tp-control-height-md)');
-  maxHeight = input('var(--tp-control-height-lg)');
+  height = input('var(--tp-control-height-sm)');
+  maxHeight = input('var(--tp-control-height-md)');
 
   protected readonly errorId = createValidationErrorId('tp-input-date-picker-error');
   protected readonly focusColor = computed(() => `var(--tp-color-${this.color()}-600)`);

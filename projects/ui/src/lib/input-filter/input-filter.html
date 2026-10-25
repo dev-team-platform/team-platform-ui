@@ -1,0 +1,46 @@
+<div
+  class="tp-input-filter__field"
+  [class.tp-input-filter__field--disabled]="disabled()"
+  [style.--tp-input-filter-height]="height()"
+  [style.--tp-input-filter-max-height]="maxHeight()"
+  cdkOverlayOrigin
+  #filterOrigin="cdkOverlayOrigin"
+  (click)="openFilter()"
+  (keydown.enter)="openFilter()"
+>
+  <tp-input
+    [value]="value()"
+    [errors]="errors()"
+    [invalid]="invalid()"
+    [color]="color()"
+    [variant]="variant()"
+    [title]="title()"
+    [placeholder]="placeholder()"
+    [required]="required()"
+    [disabled]="disabled()"
+    [readonly]="true"
+    [name]="name()"
+    [hint]="hint()"
+    [error]="error()"
+    [requiredMessage]="requiredMessage()"
+    [width]="width()"
+    [maxWidth]="maxWidth()"
+    [height]="height()"
+    [maxHeight]="maxHeight()"
+    [contentSize]="contentSize()"
+  ></tp-input>
+  <span class="tp-icon material-symbols-outlined tp-input-filter__icon" aria-hidden="true">
+    filter_alt
+  </span>
+</div>
+
+<tp-popover-menu
+  [(open)]="open"
+  [origin]="filterOrigin"
+  position="top-start"
+  ariaLabel="Filter options"
+  [width]="popoverWidth() + 'px'"
+  [maxWidth]="popoverWidth() + 'px'"
+>
+  <ng-content></ng-content>
+</tp-popover-menu>

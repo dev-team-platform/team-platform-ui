@@ -89,9 +89,9 @@ export class TpInputMultiselect implements FormValueControl<TpSelectOption[]> {
   requiredMessage = input('This field is required');
   width = input('100%');
   maxWidth = input('none');
-  minHeight = input('var(--tp-control-height-md)');
+  minHeight = input('var(--tp-control-height-sm)');
   maxHeight = input('none');
-  contentSize = input<TpInputMultiselectContentSize>('md');
+  contentSize = input<TpInputMultiselectContentSize>('sm');
   color = input<TpInputMultiselectColor>('blue');
   maxChipContentLength = input<number | undefined>(undefined);
   maxChips = input<number | undefined>(undefined);
@@ -145,7 +145,7 @@ export class TpInputMultiselect implements FormValueControl<TpSelectOption[]> {
   protected readonly contentFontSize = computed(() => CONTENT_SIZE_MAP[this.contentSize()]);
   protected readonly focusColor = computed(() => `var(--tp-color-${this.color()}-600)`);
   protected readonly floatLabel = computed<'always' | 'auto'>(() =>
-    this.title() || this.selectedValues().length ? 'always' : 'auto',
+    this.selectedValues().length ? 'always' : 'auto',
   );
 
   protected readonly isEmpty = computed(() => this.selectedValues().length === 0);

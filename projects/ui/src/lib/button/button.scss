@@ -1,4 +1,5 @@
 .tp-button {
+  --tp-icon-size: 16px;
   --tp-button-color: var(--tp-color-blue-500);
   --tp-button-contrast-color: var(--tp-color-white);
   --tp-button-disabled-color: var(--tp-color-gray-400);
@@ -12,8 +13,9 @@
   --mat-button-outlined-state-layer-color: var(--tp-color-press);
   --mat-button-outlined-ripple-color: var(--tp-color-press-ripple);
 
+  min-width: 0;
   border-radius: var(--tp-radius-sm);
-  padding: 0 var(--tp-space-4);
+  padding: 0 var(--tp-space-3);
   line-height: 1;
   letter-spacing: 0;
   transition:
@@ -44,7 +46,7 @@
 .tp-button__content {
   display: flex;
   align-items: center;
-  gap: var(--tp-space-2);
+  gap: var(--tp-space-1);
 }
 
 .tp-button--filled {

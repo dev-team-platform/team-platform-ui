@@ -73,9 +73,9 @@ export class TpInputSingleselect implements FormValueControl<TpSelectOption | nu
   requiredMessage = input('This field is required');
   width = input('100%');
   maxWidth = input('none');
-  height = input('var(--tp-control-height-md)');
-  maxHeight = input('var(--tp-control-height-lg)');
-  contentSize = input<TpInputSingleselectContentSize>('md');
+  height = input('var(--tp-control-height-sm)');
+  maxHeight = input('var(--tp-control-height-md)');
+  contentSize = input<TpInputSingleselectContentSize>('sm');
 
   private readonly select = viewChild(MatSelect);
   private readonly scrollDispatcher = inject(ScrollDispatcher);

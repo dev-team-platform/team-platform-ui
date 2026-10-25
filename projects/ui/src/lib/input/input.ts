@@ -50,9 +50,9 @@ export class TpInput implements FormValueControl<TpInputValue> {
   requiredMessage = input('This field is required');
   width = input('100%');
   maxWidth = input('none');
-  height = input('var(--tp-control-height-md)');
-  maxHeight = input('var(--tp-control-height-lg)');
-  contentSize = input<TpInputContentSize>('md');
+  height = input('var(--tp-control-height-sm)');
+  maxHeight = input('var(--tp-control-height-md)');
+  contentSize = input<TpInputContentSize>('sm');
 
   protected readonly inputType = computed(() => (this.variant() === 'number' ? 'number' : 'text'));
 

@@ -105,6 +105,7 @@ export interface TpTableConfig<T extends object = Record<string, unknown>> {
   columns: readonly TpTableColumn<T>[];
   /** Color of the indeterminate progress bar shown while the table is loading. */
   loadingColor?: TpProgressBarColor;
+  /** Data row and filter row height. Defaults to 32px. */
   rowHeight?: string | number;
   maxWidth?: string;
   maxHeight?: string | number;
@@ -319,14 +320,14 @@ export class TpTable<T extends object = Record<string, unknown>> {
   }
 
   protected readonly tableWidthCss = computed(() => {
-    const widths = this.actionsEnabled() ? ['72px'] : [];
+    const widths = this.actionsEnabled() ? ['56px'] : [];
     widths.push(...this.columns().map((column) => this.columnWidth(column)));
     return widths.length ? `max(100%, calc(${widths.join(' + ')}))` : '100%';
   });
   protected readonly actionsEnabled = computed(() => this.actionColumn().enabled ?? false);
   protected readonly actionTitle = computed(() => this.actionColumn().title ?? 'Action');
   protected readonly rowHeightCss = computed(() =>
-    this.toCssSize(this.config().rowHeight ?? '48px'),
+    this.toCssSize(this.config().rowHeight ?? '32px'),
   );
   protected readonly maxHeightCss = computed(() =>
     this.toCssSize(this.config().maxHeight ?? 'none'),

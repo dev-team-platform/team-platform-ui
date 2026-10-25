@@ -11,11 +11,13 @@ import { TestButton } from './test-button/test-button';
 import { TestCard } from './test-card/test-card';
 import { TestCheckbox } from './test-checkbox/test-checkbox';
 import { TestChip } from './test-chip/test-chip';
+import { TestConfirmationDialog } from './test-confirmation-dialog/test-confirmation-dialog';
 import { TestDialog } from './test-dialog/test-dialog';
 import { TestDivider } from './test-divider/test-divider';
 import { TestInputAutocompleteMultiselect } from './test-input-autocomplete-multiselect/test-input-autocomplete-multiselect';
 import { TestInputAutocompleteSingleselect } from './test-input-autocomplete-singleselect/test-input-autocomplete-singleselect';
 import { TestInputDatePicker } from './test-input-date-picker/test-input-date-picker';
+import { TestInputFilter } from './test-input-filter/test-input-filter';
 import { TestInputMultiselect } from './test-input-multiselect/test-input-multiselect';
 import { TestInputSingleselect } from './test-input-singleselect/test-input-singleselect';
 import { TestInput } from './test-input/test-input';
@@ -40,12 +42,14 @@ import { TestToastNotification } from './test-toast-notification/test-toast-noti
     TestCard,
     TestCheckbox,
     TestChip,
+    TestConfirmationDialog,
     TestDialog,
     TestDivider,
     TestInput,
     TestInputAutocompleteMultiselect,
     TestInputAutocompleteSingleselect,
     TestInputDatePicker,
+    TestInputFilter,
     TestInputMultiselect,
     TestInputSingleselect,
     TestProgressBar,

@@ -8,13 +8,13 @@ import {
   TpTableActionContent,
   TpTableFilterContent,
   TpTextButton,
-  type TpTableColumn,
   type TpTableActionColumnConfig,
+  type TpTableColumn,
   type TpTableConfig,
   type TpTableData,
   type TpTablePageChange,
-  type TpTableState,
   type TpTableSort,
+  type TpTableState,
 } from 'ui';
 
 interface ProjectRow {
@@ -102,7 +102,7 @@ export class TestTable {
   private reloadTimeout: ReturnType<typeof setTimeout> | null = null;
   private readonly filteringLoading = signal(false);
   protected readonly emptyState = signal(false);
-  protected readonly textButtonFontSize = signal('14px');
+  protected readonly textButtonFontSize = signal('12px');
   protected readonly textButtonFontWeight = signal('200');
   protected readonly loading = computed(
     () => this.manuallyLoading() || this.filteringLoading() || this.reloading(),
@@ -181,9 +181,9 @@ export class TestTable {
   }));
   protected readonly tableConfig = computed<TpTableConfig<ProjectRow>>(() => ({
     columns: this.columns,
-    rowHeight: '45px',
     maxWidth: '1000px',
     maxHeight: '480px',
+    rowHeight: '42px',
     maxCellContentLength: 36,
     rowsClickable: true,
     filter: { enabled: true },

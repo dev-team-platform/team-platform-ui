@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { MatFormField } from '@angular/material/form-field';
+import { By } from '@angular/platform-browser';
 import { vi } from 'vitest';
 
 import { TpInputAutocompleteMultiselect } from './input-autocomplete-multiselect';
@@ -20,6 +23,37 @@ describe('TpInputAutocompleteMultiselect', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should keep the label floating after selecting from an initially empty field', async () => {
+    fixture.componentRef.setInput('title', 'Projects');
+    fixture.componentRef.setInput('options', ['Platform API', 'Platform UI']);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const trigger = fixture.debugElement
+      .query(By.directive(MatAutocompleteTrigger))
+      .injector.get(MatAutocompleteTrigger);
+    const formField = fixture.debugElement
+      .query(By.directive(MatFormField))
+      .injector.get(MatFormField);
+    trigger.openPanel();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const selectAll = document.querySelector(
+      '.tp-input-autocomplete-multiselect__select-all .tp-input-autocomplete-multiselect__option-content',
+    ) as HTMLElement;
+    selectAll.click();
+    fixture.detectChanges();
+    await fixture.whenStable();
+    trigger.closePanel();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.value()).toEqual(['Platform API', 'Platform UI']);
+    expect(formField.floatLabel).toBe('always');
+    expect(fixture.nativeElement.querySelector('.mdc-floating-label--float-above')).toBeTruthy();
   });
 
   it('should allow overriding loading and no-results messages', () => {

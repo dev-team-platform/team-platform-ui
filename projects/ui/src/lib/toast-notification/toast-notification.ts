@@ -31,9 +31,9 @@ const TOAST_ICON_MAP: Record<TpToastNotificationType, string> = {
 };
 
 const TOAST_PROGRESS_COLOR_MAP: Record<TpToastNotificationType, TpProgressBarColor> = {
-  success: 'green',
+  success: 'emerald',
   info: 'blue',
-  warning: 'yellow',
+  warning: 'amber',
   error: 'red',
 };
 

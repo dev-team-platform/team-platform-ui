@@ -82,7 +82,10 @@
       [disabled]="disabled() || readonly()"
       (click)="toggleOptions($event)"
     >
-      <span class="tp-icon material-symbols-outlined" aria-hidden="true">
+      <span
+        class="tp-icon material-symbols-outlined tp-input-multiselect__toggle-icon"
+        aria-hidden="true"
+      >
         {{ optionsOpen() ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
       </span>
     </button>
